@@ -101,25 +101,63 @@ export default function BaselineOverview({ token }) {
           });
         }
         setData(Object.values(dateMap));
-        // Prepare meal timeline data
+        // Prepare meal timeline data (robust to different keys)
         const mealArr = [];
-        if (raw.meals?.time_series) {
-          // Group by date
+        if (raw.meals?.time_series && Array.isArray(raw.meals.time_series)) {
+          const safeParseTime = (row) => {
+            if (row.date) {
+              const d = new Date(row.date);
+              if (!isNaN(d)) return { d, label: formatTime(row.date) };
+            }
+            const dateStr = row.date_str || row.dateString || row.dateISO || row.date;
+            const timeStr = row.time_str || row.timeString || row.time || null;
+            let d;
+            if (dateStr && timeStr && typeof timeStr === 'string') {
+              // Combine date + time string
+              d = new Date(`${dateStr} ${timeStr}`);
+              if (!isNaN(d)) return { d, label: formatTime(d.toISOString()) };
+            }
+            if (dateStr) {
+              d = new Date(dateStr);
+              if (!isNaN(d)) {
+                // Default to noon if time missing
+                d.setHours(12, 0, 0, 0);
+                return { d, label: formatTime(d.toISOString()) };
+              }
+            }
+            return null;
+          };
+
+          const getDateKey = (row) => {
+            const src = row.date || row.date_str || row.dateString || row.dateISO;
+            if (src && typeof src === 'string') return src.slice(0, 10);
+            const parsed = safeParseTime(row);
+            if (parsed) return parsed.d.toISOString().slice(0, 10);
+            return null;
+          };
+
           const byDay = {};
           raw.meals.time_series.forEach((row) => {
-            const date = row.date.slice(0, 10);
-            if (!byDay[date]) byDay[date] = [];
-            byDay[date].push(row);
+            const dayKey = getDateKey(row);
+            if (!dayKey) return; // skip unparsable
+            if (!byDay[dayKey]) byDay[dayKey] = [];
+            byDay[dayKey].push(row);
           });
+
           const dayKeys = Object.keys(byDay).sort();
-          dayKeys.forEach((date, idx) => {
-            byDay[date].forEach((meal) => {
+          dayKeys.forEach((dayKey, idx) => {
+            byDay[dayKey].forEach((meal) => {
+              const parsed = safeParseTime(meal);
+              if (!parsed) return; // skip if still invalid
+              const hours = parsed.d.getHours() + parsed.d.getMinutes() / 60;
+              const dish = meal.dish || meal.item || meal.name || meal.meal || meal.description || 'Meal';
               meal._dayIdx = idx;
               meal._dayLabel = getDayLabel(idx);
-              meal._time = new Date(meal.date).getHours() + new Date(meal.date).getMinutes() / 60;
-              meal._timeLabel = formatTime(meal.date);
+              meal._time = hours;
+              meal._timeLabel = parsed.label;
+              meal.dish = dish;
             });
-            mealArr.push(...byDay[date]);
+            mealArr.push(...byDay[dayKey]);
           });
         }
         setMeals(mealArr);

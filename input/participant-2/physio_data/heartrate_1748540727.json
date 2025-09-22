@@ -1,0 +1,17 @@
+[
+  {
+    "averageSessionHeartRate": 92, "group": 1758231000, "jsonData": [{"createdTime": 1758231000, "heartRate": 90}, {"createdTime": 1758231060, "heartRate": 94}], "lastRate": 94, "logDateTime": 1758231060, "maxRate": 110, "minRate": 82, "sessionId": 60
+  },
+  {
+    "averageSessionHeartRate": 88, "group": 1758317400, "jsonData": [{"createdTime": 1758317400, "heartRate": 85}, {"createdTime": 1758317460, "heartRate": 91}], "lastRate": 91, "logDateTime": 1758317460, "maxRate": 98, "minRate": 78, "sessionId": 61
+  },
+  {
+    "averageSessionHeartRate": 85, "group": 1758403800, "jsonData": [{"createdTime": 1758403800, "heartRate": 82}, {"createdTime": 1758403860, "heartRate": 88}], "lastRate": 88, "logDateTime": 1758403860, "maxRate": 95, "minRate": 75, "sessionId": 62
+  },
+  {
+    "averageSessionHeartRate": 95, "group": 1758490200, "jsonData": [{"createdTime": 1758490200, "heartRate": 93}, {"createdTime": 1758490260, "heartRate": 97}], "lastRate": 97, "logDateTime": 1758490260, "maxRate": 115, "minRate": 85, "sessionId": 63
+  },
+  {
+    "averageSessionHeartRate": 86, "group": 1758576600, "jsonData": [{"createdTime": 1758576600, "heartRate": 84}, {"createdTime": 1758576660, "heartRate": 88}], "lastRate": 88, "logDateTime": 1758576660, "maxRate": 96, "minRate": 76, "sessionId": 64
+  }
+]

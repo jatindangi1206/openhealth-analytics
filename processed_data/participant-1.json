@@ -444,98 +444,112 @@
         "lightSleep": 240,
         "deepSleep": 120,
         "remSleep": 90,
-        "totalSleep": 450
+        "almostAwake": 30,
+        "totalSleep": 480
       },
       {
         "date": "2025-08-15 16:00:00",
         "lightSleep": 230,
         "deepSleep": 130,
         "remSleep": 100,
-        "totalSleep": 460
+        "almostAwake": 20,
+        "totalSleep": 480
       },
       {
         "date": "2025-08-16 16:00:00",
         "lightSleep": 250,
         "deepSleep": 110,
         "remSleep": 95,
-        "totalSleep": 455
+        "almostAwake": 25,
+        "totalSleep": 480
       },
       {
         "date": "2025-08-17 16:00:00",
         "lightSleep": 220,
         "deepSleep": 140,
         "remSleep": 110,
-        "totalSleep": 470
+        "almostAwake": 10,
+        "totalSleep": 480
       },
       {
         "date": "2025-08-18 16:00:00",
         "lightSleep": 245,
         "deepSleep": 115,
         "remSleep": 90,
-        "totalSleep": 450
+        "almostAwake": 30,
+        "totalSleep": 480
       },
       {
         "date": "2025-08-19 16:00:00",
         "lightSleep": 210,
         "deepSleep": 150,
         "remSleep": 115,
-        "totalSleep": 475
+        "almostAwake": 5,
+        "totalSleep": 480
       },
       {
         "date": "2025-08-20 16:00:00",
         "lightSleep": 260,
         "deepSleep": 100,
         "remSleep": 85,
-        "totalSleep": 445
+        "almostAwake": 35,
+        "totalSleep": 480
       },
       {
         "date": "2025-08-21 16:00:00",
         "lightSleep": 235,
         "deepSleep": 125,
         "remSleep": 95,
-        "totalSleep": 455
+        "almostAwake": 25,
+        "totalSleep": 480
       },
       {
         "date": "2025-08-22 16:00:00",
         "lightSleep": 225,
         "deepSleep": 135,
         "remSleep": 105,
-        "totalSleep": 465
+        "almostAwake": 15,
+        "totalSleep": 480
       },
       {
         "date": "2025-08-23 16:00:00",
         "lightSleep": 255,
         "deepSleep": 105,
         "remSleep": 90,
-        "totalSleep": 450
+        "almostAwake": 30,
+        "totalSleep": 480
       },
       {
         "date": "2025-08-24 16:00:00",
         "lightSleep": 240,
         "deepSleep": 120,
         "remSleep": 90,
-        "totalSleep": 450
+        "almostAwake": 30,
+        "totalSleep": 480
       },
       {
         "date": "2025-08-25 16:00:00",
         "lightSleep": 215,
         "deepSleep": 145,
         "remSleep": 110,
-        "totalSleep": 470
+        "almostAwake": 10,
+        "totalSleep": 480
       },
       {
         "date": "2025-08-26 16:00:00",
         "lightSleep": 230,
         "deepSleep": 130,
         "remSleep": 100,
-        "totalSleep": 460
+        "almostAwake": 20,
+        "totalSleep": 480
       },
       {
         "date": "2025-08-27 16:00:00",
         "lightSleep": 250,
         "deepSleep": 110,
         "remSleep": 95,
-        "totalSleep": 455
+        "almostAwake": 25,
+        "totalSleep": 480
       }
     ],
     "metrics": {
@@ -562,14 +576,6 @@
         "count": "14",
         "min": "85",
         "max": "115"
-      },
-      "totalSleep": {
-        "mean": 457.85714285714283,
-        "median": 455.0,
-        "std": 9.138735334633754,
-        "count": "14",
-        "min": "445",
-        "max": "475"
       }
     },
     "moving_averages": [
@@ -578,126 +584,140 @@
         "lightSleep": 240,
         "deepSleep": 120,
         "remSleep": 90,
-        "totalSleep": 450,
-        "totalSleep_ma7": 450.0,
-        "totalSleep_ma30": 450.0
+        "almostAwake": 30,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
       },
       {
         "date": "2025-08-15 16:00:00",
         "lightSleep": 230,
         "deepSleep": 130,
         "remSleep": 100,
-        "totalSleep": 460,
-        "totalSleep_ma7": 455.0,
-        "totalSleep_ma30": 455.0
+        "almostAwake": 20,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
       },
       {
         "date": "2025-08-16 16:00:00",
         "lightSleep": 250,
         "deepSleep": 110,
         "remSleep": 95,
-        "totalSleep": 455,
-        "totalSleep_ma7": 455.0,
-        "totalSleep_ma30": 455.0
+        "almostAwake": 25,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
       },
       {
         "date": "2025-08-17 16:00:00",
         "lightSleep": 220,
         "deepSleep": 140,
         "remSleep": 110,
-        "totalSleep": 470,
-        "totalSleep_ma7": 458.75,
-        "totalSleep_ma30": 458.75
+        "almostAwake": 10,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
       },
       {
         "date": "2025-08-18 16:00:00",
         "lightSleep": 245,
         "deepSleep": 115,
         "remSleep": 90,
-        "totalSleep": 450,
-        "totalSleep_ma7": 457.0,
-        "totalSleep_ma30": 457.0
+        "almostAwake": 30,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
       },
       {
         "date": "2025-08-19 16:00:00",
         "lightSleep": 210,
         "deepSleep": 150,
         "remSleep": 115,
-        "totalSleep": 475,
-        "totalSleep_ma7": 460.0,
-        "totalSleep_ma30": 460.0
+        "almostAwake": 5,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
       },
       {
         "date": "2025-08-20 16:00:00",
         "lightSleep": 260,
         "deepSleep": 100,
         "remSleep": 85,
-        "totalSleep": 445,
-        "totalSleep_ma7": 457.85714285714283,
-        "totalSleep_ma30": 457.85714285714283
+        "almostAwake": 35,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
       },
       {
         "date": "2025-08-21 16:00:00",
         "lightSleep": 235,
         "deepSleep": 125,
         "remSleep": 95,
-        "totalSleep": 455,
-        "totalSleep_ma7": 458.57142857142856,
-        "totalSleep_ma30": 457.5
+        "almostAwake": 25,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
       },
       {
         "date": "2025-08-22 16:00:00",
         "lightSleep": 225,
         "deepSleep": 135,
         "remSleep": 105,
-        "totalSleep": 465,
-        "totalSleep_ma7": 459.2857142857143,
-        "totalSleep_ma30": 458.3333333333333
+        "almostAwake": 15,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
       },
       {
         "date": "2025-08-23 16:00:00",
         "lightSleep": 255,
         "deepSleep": 105,
         "remSleep": 90,
-        "totalSleep": 450,
-        "totalSleep_ma7": 458.57142857142856,
-        "totalSleep_ma30": 457.5
+        "almostAwake": 30,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
       },
       {
         "date": "2025-08-24 16:00:00",
         "lightSleep": 240,
         "deepSleep": 120,
         "remSleep": 90,
-        "totalSleep": 450,
-        "totalSleep_ma7": 455.7142857142857,
-        "totalSleep_ma30": 456.8181818181818
+        "almostAwake": 30,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
       },
       {
         "date": "2025-08-25 16:00:00",
         "lightSleep": 215,
         "deepSleep": 145,
         "remSleep": 110,
-        "totalSleep": 470,
-        "totalSleep_ma7": 458.57142857142856,
-        "totalSleep_ma30": 457.9166666666667
+        "almostAwake": 10,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
       },
       {
         "date": "2025-08-26 16:00:00",
         "lightSleep": 230,
         "deepSleep": 130,
         "remSleep": 100,
-        "totalSleep": 460,
-        "totalSleep_ma7": 456.42857142857144,
-        "totalSleep_ma30": 458.0769230769231
+        "almostAwake": 20,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
       },
       {
         "date": "2025-08-27 16:00:00",
         "lightSleep": 250,
         "deepSleep": 110,
         "remSleep": 95,
-        "totalSleep": 455,
-        "totalSleep_ma7": 457.85714285714283,
-        "totalSleep_ma30": 457.85714285714283
+        "almostAwake": 25,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
       }
     ]
   },

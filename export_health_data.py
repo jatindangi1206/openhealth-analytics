@@ -12,8 +12,8 @@ def df_to_records(obj):
         return obj
 
 if __name__ == "__main__":
-    base_input_dir = "input"
-    output_dir = "processed_data"
+    base_input_dir = os.environ.get("INPUT_DIR", "input")
+    output_dir = os.environ.get("PROCESSED_DIR", "processed_data")
     os.makedirs(output_dir, exist_ok=True)
     participants = [p for p in os.listdir(base_input_dir) if os.path.isdir(os.path.join(base_input_dir, p))]
     print(f"Found participants: {participants}")

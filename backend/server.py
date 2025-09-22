@@ -2,11 +2,14 @@ from flask import Flask, jsonify, request, abort
 from flask_cors import CORS
 import json
 import os
-from users import USERS
+from backend.users import USERS
 
 app = Flask(__name__)
 CORS(app)
 SESSIONS = {}
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DEFAULT_PROCESSED_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "processed_data"))
+PROCESSED_DIR = os.environ.get("PROCESSED_DIR", DEFAULT_PROCESSED_DIR)
 
 @app.route('/', methods=['GET'])
 def root():
@@ -36,9 +39,7 @@ def get_my_data():
         abort(401)
     participant_id = token
     try:
-        base_dir = os.path.dirname(os.path.abspath(__file__))
-        file_path = os.path.join(base_dir, "..", "processed_data", f"{participant_id}.json")
-        file_path = os.path.abspath(file_path)
+        file_path = os.path.abspath(os.path.join(PROCESSED_DIR, f"{participant_id}.json"))
         with open(file_path, 'r') as f:
             data = json.load(f)
         return jsonify(data)
@@ -56,8 +57,7 @@ def get_my_summary():
 
     participant_id = token
     try:
-        base_dir = os.path.dirname(os.path.abspath(__file__))
-        file_path = os.path.abspath(os.path.join(base_dir, "..", "processed_data", f"{participant_id}.json"))
+        file_path = os.path.abspath(os.path.join(PROCESSED_DIR, f"{participant_id}.json"))
         with open(file_path, 'r') as f:
             data = json.load(f)
 
@@ -104,4 +104,4 @@ def get_my_summary():
         abort(500)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    app.run(debug=True, host='0.0.0.0', port=5001)

@@ -1,0 +1,1782 @@
+{
+  "blood_pressure": {
+    "time_series": [
+      {
+        "date": "2025-09-18 17:10:00",
+        "systolic": 118,
+        "diastolic": 75,
+        "heartRate": 62
+      },
+      {
+        "date": "2025-09-19 17:10:00",
+        "systolic": 116,
+        "diastolic": 74,
+        "heartRate": 60
+      },
+      {
+        "date": "2025-09-20 17:10:00",
+        "systolic": 121,
+        "diastolic": 78,
+        "heartRate": 66
+      },
+      {
+        "date": "2025-09-21 17:10:00",
+        "systolic": 115,
+        "diastolic": 72,
+        "heartRate": 59
+      },
+      {
+        "date": "2025-09-22 17:10:00",
+        "systolic": 119,
+        "diastolic": 76,
+        "heartRate": 63
+      },
+      {
+        "date": "2025-09-23 17:10:00",
+        "systolic": 122,
+        "diastolic": 80,
+        "heartRate": 69
+      },
+      {
+        "date": "2025-09-24 17:10:00",
+        "systolic": 117,
+        "diastolic": 75,
+        "heartRate": 61
+      },
+      {
+        "date": "2025-09-25 17:10:00",
+        "systolic": 114,
+        "diastolic": 73,
+        "heartRate": 58
+      },
+      {
+        "date": "2025-09-26 17:10:00",
+        "systolic": 120,
+        "diastolic": 77,
+        "heartRate": 65
+      },
+      {
+        "date": "2025-09-27 17:10:00",
+        "systolic": 116,
+        "diastolic": 74,
+        "heartRate": 60
+      },
+      {
+        "date": "2025-09-28 17:10:00",
+        "systolic": 123,
+        "diastolic": 79,
+        "heartRate": 68
+      },
+      {
+        "date": "2025-09-29 17:10:00",
+        "systolic": 118,
+        "diastolic": 76,
+        "heartRate": 64
+      },
+      {
+        "date": "2025-09-30 17:10:00",
+        "systolic": 115,
+        "diastolic": 72,
+        "heartRate": 59
+      },
+      {
+        "date": "2025-10-01 17:10:00",
+        "systolic": 119,
+        "diastolic": 77,
+        "heartRate": 63
+      }
+    ],
+    "metrics": {
+      "systolic": {
+        "mean": 118.07142857142857,
+        "median": 118.0,
+        "std": 2.758602927187983,
+        "count": "14",
+        "min": "114",
+        "max": "123"
+      },
+      "diastolic": {
+        "mean": 75.57142857142857,
+        "median": 75.5,
+        "std": 2.471819190371761,
+        "count": "14",
+        "min": "72",
+        "max": "80"
+      }
+    },
+    "moving_averages": {
+      "systolic": [
+        {
+          "date": "2025-09-18 17:10:00",
+          "systolic": 118,
+          "diastolic": 75,
+          "heartRate": 62,
+          "systolic_ma7": 118.0,
+          "systolic_ma30": 118.0
+        },
+        {
+          "date": "2025-09-19 17:10:00",
+          "systolic": 116,
+          "diastolic": 74,
+          "heartRate": 60,
+          "systolic_ma7": 117.0,
+          "systolic_ma30": 117.0
+        },
+        {
+          "date": "2025-09-20 17:10:00",
+          "systolic": 121,
+          "diastolic": 78,
+          "heartRate": 66,
+          "systolic_ma7": 118.33333333333333,
+          "systolic_ma30": 118.33333333333333
+        },
+        {
+          "date": "2025-09-21 17:10:00",
+          "systolic": 115,
+          "diastolic": 72,
+          "heartRate": 59,
+          "systolic_ma7": 117.5,
+          "systolic_ma30": 117.5
+        },
+        {
+          "date": "2025-09-22 17:10:00",
+          "systolic": 119,
+          "diastolic": 76,
+          "heartRate": 63,
+          "systolic_ma7": 117.8,
+          "systolic_ma30": 117.8
+        },
+        {
+          "date": "2025-09-23 17:10:00",
+          "systolic": 122,
+          "diastolic": 80,
+          "heartRate": 69,
+          "systolic_ma7": 118.5,
+          "systolic_ma30": 118.5
+        },
+        {
+          "date": "2025-09-24 17:10:00",
+          "systolic": 117,
+          "diastolic": 75,
+          "heartRate": 61,
+          "systolic_ma7": 118.28571428571429,
+          "systolic_ma30": 118.28571428571429
+        },
+        {
+          "date": "2025-09-25 17:10:00",
+          "systolic": 114,
+          "diastolic": 73,
+          "heartRate": 58,
+          "systolic_ma7": 117.71428571428571,
+          "systolic_ma30": 117.75
+        },
+        {
+          "date": "2025-09-26 17:10:00",
+          "systolic": 120,
+          "diastolic": 77,
+          "heartRate": 65,
+          "systolic_ma7": 118.28571428571429,
+          "systolic_ma30": 118.0
+        },
+        {
+          "date": "2025-09-27 17:10:00",
+          "systolic": 116,
+          "diastolic": 74,
+          "heartRate": 60,
+          "systolic_ma7": 117.57142857142857,
+          "systolic_ma30": 117.8
+        },
+        {
+          "date": "2025-09-28 17:10:00",
+          "systolic": 123,
+          "diastolic": 79,
+          "heartRate": 68,
+          "systolic_ma7": 118.71428571428571,
+          "systolic_ma30": 118.27272727272727
+        },
+        {
+          "date": "2025-09-29 17:10:00",
+          "systolic": 118,
+          "diastolic": 76,
+          "heartRate": 64,
+          "systolic_ma7": 118.57142857142857,
+          "systolic_ma30": 118.25
+        },
+        {
+          "date": "2025-09-30 17:10:00",
+          "systolic": 115,
+          "diastolic": 72,
+          "heartRate": 59,
+          "systolic_ma7": 117.57142857142857,
+          "systolic_ma30": 118.0
+        },
+        {
+          "date": "2025-10-01 17:10:00",
+          "systolic": 119,
+          "diastolic": 77,
+          "heartRate": 63,
+          "systolic_ma7": 117.85714285714286,
+          "systolic_ma30": 118.07142857142857
+        }
+      ],
+      "diastolic": [
+        {
+          "date": "2025-09-18 17:10:00",
+          "systolic": 118,
+          "diastolic": 75,
+          "heartRate": 62,
+          "diastolic_ma7": 75.0,
+          "diastolic_ma30": 75.0
+        },
+        {
+          "date": "2025-09-19 17:10:00",
+          "systolic": 116,
+          "diastolic": 74,
+          "heartRate": 60,
+          "diastolic_ma7": 74.5,
+          "diastolic_ma30": 74.5
+        },
+        {
+          "date": "2025-09-20 17:10:00",
+          "systolic": 121,
+          "diastolic": 78,
+          "heartRate": 66,
+          "diastolic_ma7": 75.66666666666667,
+          "diastolic_ma30": 75.66666666666667
+        },
+        {
+          "date": "2025-09-21 17:10:00",
+          "systolic": 115,
+          "diastolic": 72,
+          "heartRate": 59,
+          "diastolic_ma7": 74.75,
+          "diastolic_ma30": 74.75
+        },
+        {
+          "date": "2025-09-22 17:10:00",
+          "systolic": 119,
+          "diastolic": 76,
+          "heartRate": 63,
+          "diastolic_ma7": 75.0,
+          "diastolic_ma30": 75.0
+        },
+        {
+          "date": "2025-09-23 17:10:00",
+          "systolic": 122,
+          "diastolic": 80,
+          "heartRate": 69,
+          "diastolic_ma7": 75.83333333333333,
+          "diastolic_ma30": 75.83333333333333
+        },
+        {
+          "date": "2025-09-24 17:10:00",
+          "systolic": 117,
+          "diastolic": 75,
+          "heartRate": 61,
+          "diastolic_ma7": 75.71428571428571,
+          "diastolic_ma30": 75.71428571428571
+        },
+        {
+          "date": "2025-09-25 17:10:00",
+          "systolic": 114,
+          "diastolic": 73,
+          "heartRate": 58,
+          "diastolic_ma7": 75.42857142857143,
+          "diastolic_ma30": 75.375
+        },
+        {
+          "date": "2025-09-26 17:10:00",
+          "systolic": 120,
+          "diastolic": 77,
+          "heartRate": 65,
+          "diastolic_ma7": 75.85714285714286,
+          "diastolic_ma30": 75.55555555555556
+        },
+        {
+          "date": "2025-09-27 17:10:00",
+          "systolic": 116,
+          "diastolic": 74,
+          "heartRate": 60,
+          "diastolic_ma7": 75.28571428571429,
+          "diastolic_ma30": 75.4
+        },
+        {
+          "date": "2025-09-28 17:10:00",
+          "systolic": 123,
+          "diastolic": 79,
+          "heartRate": 68,
+          "diastolic_ma7": 76.28571428571429,
+          "diastolic_ma30": 75.72727272727273
+        },
+        {
+          "date": "2025-09-29 17:10:00",
+          "systolic": 118,
+          "diastolic": 76,
+          "heartRate": 64,
+          "diastolic_ma7": 76.28571428571429,
+          "diastolic_ma30": 75.75
+        },
+        {
+          "date": "2025-09-30 17:10:00",
+          "systolic": 115,
+          "diastolic": 72,
+          "heartRate": 59,
+          "diastolic_ma7": 75.14285714285714,
+          "diastolic_ma30": 75.46153846153847
+        },
+        {
+          "date": "2025-10-01 17:10:00",
+          "systolic": 119,
+          "diastolic": 77,
+          "heartRate": 63,
+          "diastolic_ma7": 75.42857142857143,
+          "diastolic_ma30": 75.57142857142857
+        }
+      ]
+    }
+  },
+  "heart_rate": {
+    "time_series": [
+      {
+        "date": "2025-09-18 21:30:00",
+        "averageHeartRate": 92,
+        "maxHeartRate": 110,
+        "minHeartRate": 82
+      },
+      {
+        "date": "2025-09-19 21:30:00",
+        "averageHeartRate": 88,
+        "maxHeartRate": 98,
+        "minHeartRate": 78
+      },
+      {
+        "date": "2025-09-20 21:30:00",
+        "averageHeartRate": 85,
+        "maxHeartRate": 95,
+        "minHeartRate": 75
+      },
+      {
+        "date": "2025-09-21 21:30:00",
+        "averageHeartRate": 95,
+        "maxHeartRate": 115,
+        "minHeartRate": 85
+      },
+      {
+        "date": "2025-09-22 21:30:00",
+        "averageHeartRate": 86,
+        "maxHeartRate": 96,
+        "minHeartRate": 76
+      }
+    ],
+    "metrics": {
+      "averageHeartRate": {
+        "mean": 89.2,
+        "median": 88.0,
+        "std": 4.207136793592526,
+        "count": "5",
+        "min": "85",
+        "max": "95"
+      },
+      "maxHeartRate": {
+        "mean": 102.8,
+        "median": 98.0,
+        "std": 9.093954035511725,
+        "count": "5",
+        "min": "95",
+        "max": "115"
+      },
+      "minHeartRate": {
+        "mean": 79.2,
+        "median": 78.0,
+        "std": 4.207136793592526,
+        "count": "5",
+        "min": "75",
+        "max": "85"
+      }
+    },
+    "moving_averages": [
+      {
+        "date": "2025-09-18 21:30:00",
+        "averageHeartRate": 92,
+        "maxHeartRate": 110,
+        "minHeartRate": 82,
+        "averageHeartRate_ma7": 92.0,
+        "averageHeartRate_ma30": 92.0
+      },
+      {
+        "date": "2025-09-19 21:30:00",
+        "averageHeartRate": 88,
+        "maxHeartRate": 98,
+        "minHeartRate": 78,
+        "averageHeartRate_ma7": 90.0,
+        "averageHeartRate_ma30": 90.0
+      },
+      {
+        "date": "2025-09-20 21:30:00",
+        "averageHeartRate": 85,
+        "maxHeartRate": 95,
+        "minHeartRate": 75,
+        "averageHeartRate_ma7": 88.33333333333333,
+        "averageHeartRate_ma30": 88.33333333333333
+      },
+      {
+        "date": "2025-09-21 21:30:00",
+        "averageHeartRate": 95,
+        "maxHeartRate": 115,
+        "minHeartRate": 85,
+        "averageHeartRate_ma7": 90.0,
+        "averageHeartRate_ma30": 90.0
+      },
+      {
+        "date": "2025-09-22 21:30:00",
+        "averageHeartRate": 86,
+        "maxHeartRate": 96,
+        "minHeartRate": 76,
+        "averageHeartRate_ma7": 89.2,
+        "averageHeartRate_ma30": 89.2
+      }
+    ]
+  },
+  "sleep": {
+    "time_series": [
+      {
+        "date": "2025-09-17 10:40:00",
+        "lightSleep": 260,
+        "deepSleep": 110,
+        "remSleep": 80,
+        "almostAwake": 30,
+        "totalSleep": 480
+      },
+      {
+        "date": "2025-09-18 10:40:00",
+        "lightSleep": 250,
+        "deepSleep": 120,
+        "remSleep": 90,
+        "almostAwake": 20,
+        "totalSleep": 480
+      },
+      {
+        "date": "2025-09-19 10:40:00",
+        "lightSleep": 270,
+        "deepSleep": 100,
+        "remSleep": 85,
+        "almostAwake": 25,
+        "totalSleep": 480
+      },
+      {
+        "date": "2025-09-20 10:40:00",
+        "lightSleep": 240,
+        "deepSleep": 130,
+        "remSleep": 100,
+        "almostAwake": 10,
+        "totalSleep": 480
+      },
+      {
+        "date": "2025-09-21 10:40:00",
+        "lightSleep": 265,
+        "deepSleep": 105,
+        "remSleep": 80,
+        "almostAwake": 30,
+        "totalSleep": 480
+      },
+      {
+        "date": "2025-09-22 10:40:00",
+        "lightSleep": 230,
+        "deepSleep": 140,
+        "remSleep": 105,
+        "almostAwake": 5,
+        "totalSleep": 480
+      },
+      {
+        "date": "2025-09-23 10:40:00",
+        "lightSleep": 280,
+        "deepSleep": 90,
+        "remSleep": 75,
+        "almostAwake": 35,
+        "totalSleep": 480
+      },
+      {
+        "date": "2025-09-24 10:40:00",
+        "lightSleep": 255,
+        "deepSleep": 115,
+        "remSleep": 85,
+        "almostAwake": 25,
+        "totalSleep": 480
+      },
+      {
+        "date": "2025-09-25 10:40:00",
+        "lightSleep": 245,
+        "deepSleep": 125,
+        "remSleep": 95,
+        "almostAwake": 15,
+        "totalSleep": 480
+      },
+      {
+        "date": "2025-09-26 10:40:00",
+        "lightSleep": 275,
+        "deepSleep": 95,
+        "remSleep": 80,
+        "almostAwake": 30,
+        "totalSleep": 480
+      },
+      {
+        "date": "2025-09-27 10:40:00",
+        "lightSleep": 260,
+        "deepSleep": 110,
+        "remSleep": 80,
+        "almostAwake": 30,
+        "totalSleep": 480
+      },
+      {
+        "date": "2025-09-28 10:40:00",
+        "lightSleep": 235,
+        "deepSleep": 135,
+        "remSleep": 100,
+        "almostAwake": 10,
+        "totalSleep": 480
+      },
+      {
+        "date": "2025-09-29 10:40:00",
+        "lightSleep": 250,
+        "deepSleep": 120,
+        "remSleep": 90,
+        "almostAwake": 20,
+        "totalSleep": 480
+      },
+      {
+        "date": "2025-09-30 10:40:00",
+        "lightSleep": 270,
+        "deepSleep": 100,
+        "remSleep": 85,
+        "almostAwake": 25,
+        "totalSleep": 480
+      }
+    ],
+    "metrics": {
+      "lightSleep": {
+        "mean": 256.07142857142856,
+        "median": 257.5,
+        "std": 15.213679500897998,
+        "count": "14",
+        "min": "230",
+        "max": "280"
+      },
+      "deepSleep": {
+        "mean": 113.92857142857143,
+        "median": 112.5,
+        "std": 15.213679500897998,
+        "count": "14",
+        "min": "90",
+        "max": "140"
+      },
+      "remSleep": {
+        "mean": 87.85714285714286,
+        "median": 85.0,
+        "std": 9.138735334633754,
+        "count": "14",
+        "min": "75",
+        "max": "105"
+      }
+    },
+    "moving_averages": [
+      {
+        "date": "2025-09-17 10:40:00",
+        "lightSleep": 260,
+        "deepSleep": 110,
+        "remSleep": 80,
+        "almostAwake": 30,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
+      },
+      {
+        "date": "2025-09-18 10:40:00",
+        "lightSleep": 250,
+        "deepSleep": 120,
+        "remSleep": 90,
+        "almostAwake": 20,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
+      },
+      {
+        "date": "2025-09-19 10:40:00",
+        "lightSleep": 270,
+        "deepSleep": 100,
+        "remSleep": 85,
+        "almostAwake": 25,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
+      },
+      {
+        "date": "2025-09-20 10:40:00",
+        "lightSleep": 240,
+        "deepSleep": 130,
+        "remSleep": 100,
+        "almostAwake": 10,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
+      },
+      {
+        "date": "2025-09-21 10:40:00",
+        "lightSleep": 265,
+        "deepSleep": 105,
+        "remSleep": 80,
+        "almostAwake": 30,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
+      },
+      {
+        "date": "2025-09-22 10:40:00",
+        "lightSleep": 230,
+        "deepSleep": 140,
+        "remSleep": 105,
+        "almostAwake": 5,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
+      },
+      {
+        "date": "2025-09-23 10:40:00",
+        "lightSleep": 280,
+        "deepSleep": 90,
+        "remSleep": 75,
+        "almostAwake": 35,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
+      },
+      {
+        "date": "2025-09-24 10:40:00",
+        "lightSleep": 255,
+        "deepSleep": 115,
+        "remSleep": 85,
+        "almostAwake": 25,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
+      },
+      {
+        "date": "2025-09-25 10:40:00",
+        "lightSleep": 245,
+        "deepSleep": 125,
+        "remSleep": 95,
+        "almostAwake": 15,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
+      },
+      {
+        "date": "2025-09-26 10:40:00",
+        "lightSleep": 275,
+        "deepSleep": 95,
+        "remSleep": 80,
+        "almostAwake": 30,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
+      },
+      {
+        "date": "2025-09-27 10:40:00",
+        "lightSleep": 260,
+        "deepSleep": 110,
+        "remSleep": 80,
+        "almostAwake": 30,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
+      },
+      {
+        "date": "2025-09-28 10:40:00",
+        "lightSleep": 235,
+        "deepSleep": 135,
+        "remSleep": 100,
+        "almostAwake": 10,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
+      },
+      {
+        "date": "2025-09-29 10:40:00",
+        "lightSleep": 250,
+        "deepSleep": 120,
+        "remSleep": 90,
+        "almostAwake": 20,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
+      },
+      {
+        "date": "2025-09-30 10:40:00",
+        "lightSleep": 270,
+        "deepSleep": 100,
+        "remSleep": 85,
+        "almostAwake": 25,
+        "totalSleep": 480,
+        "totalSleep_ma7": 480.0,
+        "totalSleep_ma30": 480.0
+      }
+    ]
+  },
+  "spo2": {
+    "time_series": [
+      {
+        "date": "2025-09-18 10:40:00",
+        "spo2": 98
+      },
+      {
+        "date": "2025-09-19 10:40:00",
+        "spo2": 99
+      },
+      {
+        "date": "2025-09-20 10:40:00",
+        "spo2": 97
+      },
+      {
+        "date": "2025-09-21 10:40:00",
+        "spo2": 98
+      },
+      {
+        "date": "2025-09-22 10:40:00",
+        "spo2": 99
+      },
+      {
+        "date": "2025-09-23 10:40:00",
+        "spo2": 99
+      },
+      {
+        "date": "2025-09-24 10:40:00",
+        "spo2": 98
+      },
+      {
+        "date": "2025-09-25 10:40:00",
+        "spo2": 98
+      },
+      {
+        "date": "2025-09-26 10:40:00",
+        "spo2": 97
+      },
+      {
+        "date": "2025-09-27 10:40:00",
+        "spo2": 98
+      },
+      {
+        "date": "2025-09-28 10:40:00",
+        "spo2": 99
+      },
+      {
+        "date": "2025-09-29 10:40:00",
+        "spo2": 99
+      },
+      {
+        "date": "2025-09-30 10:40:00",
+        "spo2": 98
+      },
+      {
+        "date": "2025-10-01 10:40:00",
+        "spo2": 99
+      }
+    ],
+    "metrics": {
+      "spo2": {
+        "mean": 98.28571428571429,
+        "median": 98.0,
+        "std": 0.7262730392025629,
+        "count": "14",
+        "min": "97",
+        "max": "99"
+      }
+    },
+    "moving_averages": [
+      {
+        "date": "2025-09-18 10:40:00",
+        "spo2": 98,
+        "spo2_ma7": 98.0,
+        "spo2_ma30": 98.0
+      },
+      {
+        "date": "2025-09-19 10:40:00",
+        "spo2": 99,
+        "spo2_ma7": 98.5,
+        "spo2_ma30": 98.5
+      },
+      {
+        "date": "2025-09-20 10:40:00",
+        "spo2": 97,
+        "spo2_ma7": 98.0,
+        "spo2_ma30": 98.0
+      },
+      {
+        "date": "2025-09-21 10:40:00",
+        "spo2": 98,
+        "spo2_ma7": 98.0,
+        "spo2_ma30": 98.0
+      },
+      {
+        "date": "2025-09-22 10:40:00",
+        "spo2": 99,
+        "spo2_ma7": 98.2,
+        "spo2_ma30": 98.2
+      },
+      {
+        "date": "2025-09-23 10:40:00",
+        "spo2": 99,
+        "spo2_ma7": 98.33333333333333,
+        "spo2_ma30": 98.33333333333333
+      },
+      {
+        "date": "2025-09-24 10:40:00",
+        "spo2": 98,
+        "spo2_ma7": 98.28571428571429,
+        "spo2_ma30": 98.28571428571429
+      },
+      {
+        "date": "2025-09-25 10:40:00",
+        "spo2": 98,
+        "spo2_ma7": 98.28571428571429,
+        "spo2_ma30": 98.25
+      },
+      {
+        "date": "2025-09-26 10:40:00",
+        "spo2": 97,
+        "spo2_ma7": 98.0,
+        "spo2_ma30": 98.11111111111111
+      },
+      {
+        "date": "2025-09-27 10:40:00",
+        "spo2": 98,
+        "spo2_ma7": 98.14285714285714,
+        "spo2_ma30": 98.1
+      },
+      {
+        "date": "2025-09-28 10:40:00",
+        "spo2": 99,
+        "spo2_ma7": 98.28571428571429,
+        "spo2_ma30": 98.18181818181819
+      },
+      {
+        "date": "2025-09-29 10:40:00",
+        "spo2": 99,
+        "spo2_ma7": 98.28571428571429,
+        "spo2_ma30": 98.25
+      },
+      {
+        "date": "2025-09-30 10:40:00",
+        "spo2": 98,
+        "spo2_ma7": 98.14285714285714,
+        "spo2_ma30": 98.23076923076923
+      },
+      {
+        "date": "2025-10-01 10:40:00",
+        "spo2": 99,
+        "spo2_ma7": 98.28571428571429,
+        "spo2_ma30": 98.28571428571429
+      }
+    ]
+  },
+  "steps": {
+    "time_series": [
+      {
+        "date": "2025-09-18 10:40:00",
+        "steps": 5500
+      },
+      {
+        "date": "2025-09-19 10:40:00",
+        "steps": 6200
+      },
+      {
+        "date": "2025-09-20 10:40:00",
+        "steps": 4500
+      },
+      {
+        "date": "2025-09-21 10:40:00",
+        "steps": 7100
+      },
+      {
+        "date": "2025-09-22 10:40:00",
+        "steps": 5800
+      },
+      {
+        "date": "2025-09-23 10:40:00",
+        "steps": 8200
+      },
+      {
+        "date": "2025-09-24 10:40:00",
+        "steps": 4100
+      },
+      {
+        "date": "2025-09-25 10:40:00",
+        "steps": 6500
+      },
+      {
+        "date": "2025-09-26 10:40:00",
+        "steps": 5900
+      },
+      {
+        "date": "2025-09-27 10:40:00",
+        "steps": 7800
+      },
+      {
+        "date": "2025-09-28 10:40:00",
+        "steps": 5100
+      },
+      {
+        "date": "2025-09-29 10:40:00",
+        "steps": 8500
+      },
+      {
+        "date": "2025-09-30 10:40:00",
+        "steps": 4800
+      },
+      {
+        "date": "2025-10-01 10:40:00",
+        "steps": 6800
+      }
+    ],
+    "metrics": {
+      "steps": {
+        "mean": 6200.0,
+        "median": 6050.0,
+        "std": 1367.7606628241765,
+        "count": "14",
+        "min": "4100",
+        "max": "8500"
+      }
+    },
+    "moving_averages": [
+      {
+        "date": "2025-09-18 10:40:00",
+        "steps": 5500,
+        "steps_ma7": 5500.0,
+        "steps_ma30": 5500.0
+      },
+      {
+        "date": "2025-09-19 10:40:00",
+        "steps": 6200,
+        "steps_ma7": 5850.0,
+        "steps_ma30": 5850.0
+      },
+      {
+        "date": "2025-09-20 10:40:00",
+        "steps": 4500,
+        "steps_ma7": 5400.0,
+        "steps_ma30": 5400.0
+      },
+      {
+        "date": "2025-09-21 10:40:00",
+        "steps": 7100,
+        "steps_ma7": 5825.0,
+        "steps_ma30": 5825.0
+      },
+      {
+        "date": "2025-09-22 10:40:00",
+        "steps": 5800,
+        "steps_ma7": 5820.0,
+        "steps_ma30": 5820.0
+      },
+      {
+        "date": "2025-09-23 10:40:00",
+        "steps": 8200,
+        "steps_ma7": 6216.666666666667,
+        "steps_ma30": 6216.666666666667
+      },
+      {
+        "date": "2025-09-24 10:40:00",
+        "steps": 4100,
+        "steps_ma7": 5914.285714285715,
+        "steps_ma30": 5914.285714285715
+      },
+      {
+        "date": "2025-09-25 10:40:00",
+        "steps": 6500,
+        "steps_ma7": 6057.142857142857,
+        "steps_ma30": 5987.5
+      },
+      {
+        "date": "2025-09-26 10:40:00",
+        "steps": 5900,
+        "steps_ma7": 6014.285714285715,
+        "steps_ma30": 5977.777777777777
+      },
+      {
+        "date": "2025-09-27 10:40:00",
+        "steps": 7800,
+        "steps_ma7": 6485.714285714285,
+        "steps_ma30": 6160.0
+      },
+      {
+        "date": "2025-09-28 10:40:00",
+        "steps": 5100,
+        "steps_ma7": 6200.0,
+        "steps_ma30": 6063.636363636364
+      },
+      {
+        "date": "2025-09-29 10:40:00",
+        "steps": 8500,
+        "steps_ma7": 6585.714285714285,
+        "steps_ma30": 6266.666666666667
+      },
+      {
+        "date": "2025-09-30 10:40:00",
+        "steps": 4800,
+        "steps_ma7": 6100.0,
+        "steps_ma30": 6153.846153846154
+      },
+      {
+        "date": "2025-10-01 10:40:00",
+        "steps": 6800,
+        "steps_ma7": 6485.714285714285,
+        "steps_ma30": 6200.0
+      }
+    ]
+  },
+  "temperature": {
+    "time_series": [
+      {
+        "date": "2025-09-18 10:40:00",
+        "temperature": 98.5
+      },
+      {
+        "date": "2025-09-19 10:40:00",
+        "temperature": 98.3
+      },
+      {
+        "date": "2025-09-20 10:40:00",
+        "temperature": 98.7
+      },
+      {
+        "date": "2025-09-21 10:40:00",
+        "temperature": 98.2
+      },
+      {
+        "date": "2025-09-22 10:40:00",
+        "temperature": 98.6
+      },
+      {
+        "date": "2025-09-23 10:40:00",
+        "temperature": 98.8
+      },
+      {
+        "date": "2025-09-24 10:40:00",
+        "temperature": 98.4
+      },
+      {
+        "date": "2025-09-25 10:40:00",
+        "temperature": 98.1
+      },
+      {
+        "date": "2025-09-26 10:40:00",
+        "temperature": 98.7
+      },
+      {
+        "date": "2025-09-27 10:40:00",
+        "temperature": 98.3
+      },
+      {
+        "date": "2025-09-28 10:40:00",
+        "temperature": 98.9
+      },
+      {
+        "date": "2025-09-29 10:40:00",
+        "temperature": 98.5
+      },
+      {
+        "date": "2025-09-30 10:40:00",
+        "temperature": 98.2
+      },
+      {
+        "date": "2025-10-01 10:40:00",
+        "temperature": 98.6
+      }
+    ],
+    "metrics": {
+      "temperature": {
+        "mean": 98.48571428571428,
+        "median": 98.5,
+        "std": 0.24449993820085142,
+        "count": "14",
+        "min": 98.1,
+        "max": 98.9
+      }
+    },
+    "moving_averages": [
+      {
+        "date": "2025-09-18 10:40:00",
+        "temperature": 98.5,
+        "temperature_ma7": 98.5,
+        "temperature_ma30": 98.5
+      },
+      {
+        "date": "2025-09-19 10:40:00",
+        "temperature": 98.3,
+        "temperature_ma7": 98.4,
+        "temperature_ma30": 98.4
+      },
+      {
+        "date": "2025-09-20 10:40:00",
+        "temperature": 98.7,
+        "temperature_ma7": 98.5,
+        "temperature_ma30": 98.5
+      },
+      {
+        "date": "2025-09-21 10:40:00",
+        "temperature": 98.2,
+        "temperature_ma7": 98.425,
+        "temperature_ma30": 98.425
+      },
+      {
+        "date": "2025-09-22 10:40:00",
+        "temperature": 98.6,
+        "temperature_ma7": 98.46000000000001,
+        "temperature_ma30": 98.46000000000001
+      },
+      {
+        "date": "2025-09-23 10:40:00",
+        "temperature": 98.8,
+        "temperature_ma7": 98.51666666666667,
+        "temperature_ma30": 98.51666666666667
+      },
+      {
+        "date": "2025-09-24 10:40:00",
+        "temperature": 98.4,
+        "temperature_ma7": 98.5,
+        "temperature_ma30": 98.5
+      },
+      {
+        "date": "2025-09-25 10:40:00",
+        "temperature": 98.1,
+        "temperature_ma7": 98.44285714285715,
+        "temperature_ma30": 98.45
+      },
+      {
+        "date": "2025-09-26 10:40:00",
+        "temperature": 98.7,
+        "temperature_ma7": 98.5,
+        "temperature_ma30": 98.47777777777777
+      },
+      {
+        "date": "2025-09-27 10:40:00",
+        "temperature": 98.3,
+        "temperature_ma7": 98.44285714285715,
+        "temperature_ma30": 98.46000000000001
+      },
+      {
+        "date": "2025-09-28 10:40:00",
+        "temperature": 98.9,
+        "temperature_ma7": 98.54285714285713,
+        "temperature_ma30": 98.5
+      },
+      {
+        "date": "2025-09-29 10:40:00",
+        "temperature": 98.5,
+        "temperature_ma7": 98.52857142857144,
+        "temperature_ma30": 98.5
+      },
+      {
+        "date": "2025-09-30 10:40:00",
+        "temperature": 98.2,
+        "temperature_ma7": 98.44285714285715,
+        "temperature_ma30": 98.47692307692309
+      },
+      {
+        "date": "2025-10-01 10:40:00",
+        "temperature": 98.6,
+        "temperature_ma7": 98.47142857142856,
+        "temperature_ma30": 98.48571428571428
+      }
+    ]
+  },
+  "meals": {
+    "time_series": [
+      {
+        "date": "2025-08-15 19:40:00",
+        "dish": "Oatmeal with Berries",
+        "date_str": "2025-08-15"
+      },
+      {
+        "date": "2025-08-16 02:50:00",
+        "dish": "Chicken Salad Sandwich",
+        "date_str": "2025-08-16"
+      },
+      {
+        "date": "2025-08-16 10:20:00",
+        "dish": "Grilled Salmon with Asparagus",
+        "date_str": "2025-08-16"
+      },
+      {
+        "date": "2025-08-16 19:40:00",
+        "dish": "Scrambled Eggs and Toast",
+        "date_str": "2025-08-16"
+      },
+      {
+        "date": "2025-08-17 02:50:00",
+        "dish": "Lentil Soup",
+        "date_str": "2025-08-17"
+      },
+      {
+        "date": "2025-08-17 10:20:00",
+        "dish": "Vegetable Stir-fry",
+        "date_str": "2025-08-17"
+      },
+      {
+        "date": "2025-08-17 19:40:00",
+        "dish": "Greek Yogurt with Honey",
+        "date_str": "2025-08-17"
+      },
+      {
+        "date": "2025-08-18 02:50:00",
+        "dish": "Quinoa Bowl",
+        "date_str": "2025-08-18"
+      },
+      {
+        "date": "2025-08-18 10:20:00",
+        "dish": "Pasta with Tomato Sauce",
+        "date_str": "2025-08-18"
+      },
+      {
+        "date": "2025-08-18 19:40:00",
+        "dish": "Protein Shake",
+        "date_str": "2025-08-18"
+      },
+      {
+        "date": "2025-08-19 02:50:00",
+        "dish": "Apple with Peanut Butter",
+        "date_str": "2025-08-19"
+      },
+      {
+        "date": "2025-08-19 10:20:00",
+        "dish": "Beef Tacos",
+        "date_str": "2025-08-19"
+      },
+      {
+        "date": "2025-08-19 19:40:00",
+        "dish": "Cereal with Milk",
+        "date_str": "2025-08-19"
+      },
+      {
+        "date": "2025-08-20 02:50:00",
+        "dish": "Tuna Salad",
+        "date_str": "2025-08-20"
+      },
+      {
+        "date": "2025-08-20 10:20:00",
+        "dish": "Chicken Curry with Rice",
+        "date_str": "2025-08-20"
+      },
+      {
+        "date": "2025-08-20 19:40:00",
+        "dish": "Oatmeal with Berries",
+        "date_str": "2025-08-20"
+      },
+      {
+        "date": "2025-08-21 02:50:00",
+        "dish": "Leftover Chicken Curry",
+        "date_str": "2025-08-21"
+      },
+      {
+        "date": "2025-08-21 10:20:00",
+        "dish": "Steak with Roasted Vegetables",
+        "date_str": "2025-08-21"
+      },
+      {
+        "date": "2025-08-21 19:40:00",
+        "dish": "Pancakes",
+        "date_str": "2025-08-21"
+      },
+      {
+        "date": "2025-08-22 02:50:00",
+        "dish": "Caesar Salad",
+        "date_str": "2025-08-22"
+      },
+      {
+        "date": "2025-08-22 10:20:00",
+        "dish": "Pizza Slice",
+        "date_str": "2025-08-22"
+      },
+      {
+        "date": "2025-08-22 19:40:00",
+        "dish": "Scrambled Eggs and Toast",
+        "date_str": "2025-08-22"
+      },
+      {
+        "date": "2025-08-23 02:50:00",
+        "dish": "Burger and Fries",
+        "date_str": "2025-08-23"
+      },
+      {
+        "date": "2025-08-23 10:20:00",
+        "dish": "Fish and Chips",
+        "date_str": "2025-08-23"
+      },
+      {
+        "date": "2025-08-23 19:40:00",
+        "dish": "Greek Yogurt with Honey",
+        "date_str": "2025-08-23"
+      },
+      {
+        "date": "2025-08-24 02:50:00",
+        "dish": "Chicken Salad Sandwich",
+        "date_str": "2025-08-24"
+      },
+      {
+        "date": "2025-08-24 10:20:00",
+        "dish": "Vegetable Soup",
+        "date_str": "2025-08-24"
+      },
+      {
+        "date": "2025-08-24 19:40:00",
+        "dish": "Oatmeal with Berries",
+        "date_str": "2025-08-24"
+      },
+      {
+        "date": "2025-08-25 02:50:00",
+        "dish": "Leftover Vegetable Soup",
+        "date_str": "2025-08-25"
+      },
+      {
+        "date": "2025-08-25 10:20:00",
+        "dish": "Grilled Salmon with Asparagus",
+        "date_str": "2025-08-25"
+      },
+      {
+        "date": "2025-08-25 19:40:00",
+        "dish": "Protein Shake",
+        "date_str": "2025-08-25"
+      },
+      {
+        "date": "2025-08-26 02:50:00",
+        "dish": "Quinoa Bowl",
+        "date_str": "2025-08-26"
+      },
+      {
+        "date": "2025-08-26 10:20:00",
+        "dish": "Pasta with Tomato Sauce",
+        "date_str": "2025-08-26"
+      },
+      {
+        "date": "2025-08-26 19:40:00",
+        "dish": "Scrambled Eggs and Toast",
+        "date_str": "2025-08-26"
+      },
+      {
+        "date": "2025-08-27 02:50:00",
+        "dish": "Tuna Salad",
+        "date_str": "2025-08-27"
+      },
+      {
+        "date": "2025-08-27 10:20:00",
+        "dish": "Chicken Curry with Rice",
+        "date_str": "2025-08-27"
+      },
+      {
+        "date": "2025-08-27 19:40:00",
+        "dish": "Oatmeal with Berries",
+        "date_str": "2025-08-27"
+      },
+      {
+        "date": "2025-08-28 02:50:00",
+        "dish": "Apple with Peanut Butter",
+        "date_str": "2025-08-28"
+      },
+      {
+        "date": "2025-08-28 10:20:00",
+        "dish": "Steak with Roasted Vegetables",
+        "date_str": "2025-08-28"
+      },
+      {
+        "date": "2025-08-28 19:40:00",
+        "dish": "Cereal with Milk",
+        "date_str": "2025-08-28"
+      },
+      {
+        "date": "2025-08-29 02:50:00",
+        "dish": "Leftover Steak",
+        "date_str": "2025-08-29"
+      },
+      {
+        "date": "2025-08-29 10:20:00",
+        "dish": "Pizza Slice",
+        "date_str": "2025-08-29"
+      },
+      {
+        "date": "2025-09-18 14:20:00",
+        "dish": "Avocado Toast",
+        "date_str": "2025-09-18"
+      },
+      {
+        "date": "2025-09-18 21:30:00",
+        "dish": "Smoothie Bowl",
+        "date_str": "2025-09-18"
+      },
+      {
+        "date": "2025-09-19 05:00:00",
+        "dish": "Tofu Scramble",
+        "date_str": "2025-09-19"
+      },
+      {
+        "date": "2025-09-19 14:20:00",
+        "dish": "Greek Salad",
+        "date_str": "2025-09-19"
+      },
+      {
+        "date": "2025-09-19 21:30:00",
+        "dish": "Black Bean Burger",
+        "date_str": "2025-09-19"
+      },
+      {
+        "date": "2025-09-20 05:00:00",
+        "dish": "Sushi Rolls",
+        "date_str": "2025-09-20"
+      },
+      {
+        "date": "2025-09-20 14:20:00",
+        "dish": "Oatmeal with Berries",
+        "date_str": "2025-09-20"
+      },
+      {
+        "date": "2025-09-20 21:30:00",
+        "dish": "Leftover Sushi",
+        "date_str": "2025-09-20"
+      },
+      {
+        "date": "2025-09-21 05:00:00",
+        "dish": "Mushroom Risotto",
+        "date_str": "2025-09-21"
+      },
+      {
+        "date": "2025-09-21 14:20:00",
+        "dish": "Cottage Cheese with Fruit",
+        "date_str": "2025-09-21"
+      },
+      {
+        "date": "2025-09-21 21:30:00",
+        "dish": "Lentil Soup",
+        "date_str": "2025-09-21"
+      },
+      {
+        "date": "2025-09-22 05:00:00",
+        "dish": "Chicken and Vegetable Skewers",
+        "date_str": "2025-09-22"
+      },
+      {
+        "date": "2025-09-22 14:20:00",
+        "dish": "Protein Shake",
+        "date_str": "2025-09-22"
+      },
+      {
+        "date": "2025-09-22 21:30:00",
+        "dish": "Quinoa Bowl",
+        "date_str": "2025-09-22"
+      },
+      {
+        "date": "2025-09-23 05:00:00",
+        "dish": "Pasta Primavera",
+        "date_str": "2025-09-23"
+      },
+      {
+        "date": "2025-09-23 14:20:00",
+        "dish": "Scrambled Eggs and Toast",
+        "date_str": "2025-09-23"
+      },
+      {
+        "date": "2025-09-23 21:30:00",
+        "dish": "Caprese Salad",
+        "date_str": "2025-09-23"
+      },
+      {
+        "date": "2025-09-24 05:00:00",
+        "dish": "Baked Cod with Green Beans",
+        "date_str": "2025-09-24"
+      },
+      {
+        "date": "2025-09-24 14:20:00",
+        "dish": "Avocado Toast",
+        "date_str": "2025-09-24"
+      },
+      {
+        "date": "2025-09-24 21:30:00",
+        "dish": "Leftover Baked Cod",
+        "date_str": "2025-09-24"
+      },
+      {
+        "date": "2025-09-25 05:00:00",
+        "dish": "Margherita Pizza",
+        "date_str": "2025-09-25"
+      },
+      {
+        "date": "2025-09-25 14:20:00",
+        "dish": "Greek Yogurt with Honey",
+        "date_str": "2025-09-25"
+      },
+      {
+        "date": "2025-09-25 21:30:00",
+        "dish": "Turkey Sandwich",
+        "date_str": "2025-09-25"
+      },
+      {
+        "date": "2025-09-26 05:00:00",
+        "dish": "Pad Thai",
+        "date_str": "2025-09-26"
+      },
+      {
+        "date": "2025-09-26 14:20:00",
+        "dish": "Smoothie Bowl",
+        "date_str": "2025-09-26"
+      },
+      {
+        "date": "2025-09-26 21:30:00",
+        "dish": "Leftover Pad Thai",
+        "date_str": "2025-09-26"
+      },
+      {
+        "date": "2025-09-27 05:00:00",
+        "dish": "Vegetable Stir-fry",
+        "date_str": "2025-09-27"
+      },
+      {
+        "date": "2025-09-27 14:20:00",
+        "dish": "Oatmeal with Berries",
+        "date_str": "2025-09-27"
+      },
+      {
+        "date": "2025-09-27 21:30:00",
+        "dish": "Tuna Salad",
+        "date_str": "2025-09-27"
+      },
+      {
+        "date": "2025-09-28 05:00:00",
+        "dish": "Chicken Fajitas",
+        "date_str": "2025-09-28"
+      },
+      {
+        "date": "2025-09-28 14:20:00",
+        "dish": "Protein Shake",
+        "date_str": "2025-09-28"
+      },
+      {
+        "date": "2025-09-28 21:30:00",
+        "dish": "Apple with Peanut Butter",
+        "date_str": "2025-09-28"
+      },
+      {
+        "date": "2025-09-29 05:00:00",
+        "dish": "Leftover Chicken Fajitas",
+        "date_str": "2025-09-29"
+      },
+      {
+        "date": "2025-09-29 14:20:00",
+        "dish": "Scrambled Eggs and Toast",
+        "date_str": "2025-09-29"
+      },
+      {
+        "date": "2025-09-29 21:30:00",
+        "dish": "Quinoa Bowl",
+        "date_str": "2025-09-29"
+      },
+      {
+        "date": "2025-09-30 05:00:00",
+        "dish": "Grilled Salmon with Asparagus",
+        "date_str": "2025-09-30"
+      },
+      {
+        "date": "2025-09-30 14:20:00",
+        "dish": "Cereal with Milk",
+        "date_str": "2025-09-30"
+      },
+      {
+        "date": "2025-09-30 21:30:00",
+        "dish": "Greek Salad",
+        "date_str": "2025-09-30"
+      },
+      {
+        "date": "2025-10-01 05:00:00",
+        "dish": "Vegetable Soup",
+        "date_str": "2025-10-01"
+      },
+      {
+        "date": "2025-10-01 14:20:00",
+        "dish": "Avocado Toast",
+        "date_str": "2025-10-01"
+      },
+      {
+        "date": "2025-10-01 21:30:00",
+        "dish": "Leftover Vegetable Soup",
+        "date_str": "2025-10-01"
+      },
+      {
+        "date": "2025-10-02 05:00:00",
+        "dish": "Fish Tacos",
+        "date_str": "2025-10-02"
+      }
+    ],
+    "by_date": {
+      "2025-08-15": [
+        "Oatmeal with Berries"
+      ],
+      "2025-08-16": [
+        "Chicken Salad Sandwich",
+        "Grilled Salmon with Asparagus",
+        "Scrambled Eggs and Toast"
+      ],
+      "2025-08-17": [
+        "Lentil Soup",
+        "Vegetable Stir-fry",
+        "Greek Yogurt with Honey"
+      ],
+      "2025-08-18": [
+        "Quinoa Bowl",
+        "Pasta with Tomato Sauce",
+        "Protein Shake"
+      ],
+      "2025-08-19": [
+        "Apple with Peanut Butter",
+        "Beef Tacos",
+        "Cereal with Milk"
+      ],
+      "2025-08-20": [
+        "Tuna Salad",
+        "Chicken Curry with Rice",
+        "Oatmeal with Berries"
+      ],
+      "2025-08-21": [
+        "Leftover Chicken Curry",
+        "Steak with Roasted Vegetables",
+        "Pancakes"
+      ],
+      "2025-08-22": [
+        "Caesar Salad",
+        "Pizza Slice",
+        "Scrambled Eggs and Toast"
+      ],
+      "2025-08-23": [
+        "Burger and Fries",
+        "Fish and Chips",
+        "Greek Yogurt with Honey"
+      ],
+      "2025-08-24": [
+        "Chicken Salad Sandwich",
+        "Vegetable Soup",
+        "Oatmeal with Berries"
+      ],
+      "2025-08-25": [
+        "Leftover Vegetable Soup",
+        "Grilled Salmon with Asparagus",
+        "Protein Shake"
+      ],
+      "2025-08-26": [
+        "Quinoa Bowl",
+        "Pasta with Tomato Sauce",
+        "Scrambled Eggs and Toast"
+      ],
+      "2025-08-27": [
+        "Tuna Salad",
+        "Chicken Curry with Rice",
+        "Oatmeal with Berries"
+      ],
+      "2025-08-28": [
+        "Apple with Peanut Butter",
+        "Steak with Roasted Vegetables",
+        "Cereal with Milk"
+      ],
+      "2025-08-29": [
+        "Leftover Steak",
+        "Pizza Slice"
+      ],
+      "2025-09-18": [
+        "Avocado Toast",
+        "Smoothie Bowl"
+      ],
+      "2025-09-19": [
+        "Tofu Scramble",
+        "Greek Salad",
+        "Black Bean Burger"
+      ],
+      "2025-09-20": [
+        "Sushi Rolls",
+        "Oatmeal with Berries",
+        "Leftover Sushi"
+      ],
+      "2025-09-21": [
+        "Mushroom Risotto",
+        "Cottage Cheese with Fruit",
+        "Lentil Soup"
+      ],
+      "2025-09-22": [
+        "Chicken and Vegetable Skewers",
+        "Protein Shake",
+        "Quinoa Bowl"
+      ],
+      "2025-09-23": [
+        "Pasta Primavera",
+        "Scrambled Eggs and Toast",
+        "Caprese Salad"
+      ],
+      "2025-09-24": [
+        "Baked Cod with Green Beans",
+        "Avocado Toast",
+        "Leftover Baked Cod"
+      ],
+      "2025-09-25": [
+        "Margherita Pizza",
+        "Greek Yogurt with Honey",
+        "Turkey Sandwich"
+      ],
+      "2025-09-26": [
+        "Pad Thai",
+        "Smoothie Bowl",
+        "Leftover Pad Thai"
+      ],
+      "2025-09-27": [
+        "Vegetable Stir-fry",
+        "Oatmeal with Berries",
+        "Tuna Salad"
+      ],
+      "2025-09-28": [
+        "Chicken Fajitas",
+        "Protein Shake",
+        "Apple with Peanut Butter"
+      ],
+      "2025-09-29": [
+        "Leftover Chicken Fajitas",
+        "Scrambled Eggs and Toast",
+        "Quinoa Bowl"
+      ],
+      "2025-09-30": [
+        "Grilled Salmon with Asparagus",
+        "Cereal with Milk",
+        "Greek Salad"
+      ],
+      "2025-10-01": [
+        "Vegetable Soup",
+        "Avocado Toast",
+        "Leftover Vegetable Soup"
+      ],
+      "2025-10-02": [
+        "Fish Tacos"
+      ]
+    }
+  },
+  "lung_function": {
+    "metrics": {
+      "fev1": {
+        "mean": 3.65,
+        "median": 3.65,
+        "std": null,
+        "count": "1",
+        "min": 3.65,
+        "max": 3.65
+      },
+      "fev1_fvc": {
+        "mean": 0.85,
+        "median": 0.85,
+        "std": null,
+        "count": "1",
+        "min": 0.85,
+        "max": 0.85
+      }
+    }
+  }
+}

@@ -110,10 +110,11 @@ function transformData(raw) {
 // Custom tooltip component
 const CustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload || !payload.length) return null;
-
+  // If label is a day string, use as is; else fallback
+  const dayLabel = payload[0]?.payload?.day || label;
   return (
     <div className="custom-tooltip">
-      <div className="tooltip-header">{label}</div>
+      <div className="tooltip-header">{dayLabel}</div>
       {payload.map((entry, index) => (
         <div key={index} className="tooltip-item">
           <div 
@@ -179,24 +180,25 @@ export default function ChartArea({ selected, token }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [chartType, setChartType] = useState('line');
+  const [lungMetrics, setLungMetrics] = useState(null);
 
   const fetchData = async () => {
     if (!token) return;
-    
     setLoading(true);
     setError(null);
-    
     try {
-      const res = await fetch("/api/my-data", { 
-        headers: { Authorization: token } 
-      });
-      
+      const res = await fetch("/api/my-data", { headers: { Authorization: token } });
       if (!res.ok) throw new Error('Failed to fetch data');
-      
       const raw = await res.json();
       const { arr, sleepStageArr } = transformData(raw);
       setData(arr);
       setSleepStages(sleepStageArr);
+      // Lung function metrics
+      if (raw.lung_function && raw.lung_function.metrics) {
+        setLungMetrics(raw.lung_function.metrics);
+      } else {
+        setLungMetrics(null);
+      }
     } catch (e) {
       console.error('Data fetch error', e);
       setError(e.message || 'Failed to load chart data');
@@ -653,6 +655,25 @@ export default function ChartArea({ selected, token }) {
       <div style={{ minHeight: '400px' }}>
         {renderChart()}
       </div>
+
+      {/* Lung Function Section */}
+      {lungMetrics && (
+        <div className="lung-section" style={{ margin: '2rem 0' }}>
+          <h3 style={{ color: COLORS.systolic, marginBottom: 12 }}>Lung Function</h3>
+          <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap' }}>
+            <div className="lung-metric-card" style={{ background: '#f9fafb', borderRadius: 12, padding: 20, minWidth: 220, boxShadow: '0 2px 8px #0001' }}>
+              <div style={{ fontWeight: 600, color: COLORS.systolic, marginBottom: 4 }}>FEV1</div>
+              <div style={{ fontSize: 24, fontWeight: 700 }}>{lungMetrics.fev1?.mean?.toFixed(2) ?? '--'} <span style={{ fontSize: 14, color: '#888' }}>L</span></div>
+              <div style={{ fontSize: 13, color: '#666' }}>Min: {lungMetrics.fev1?.min?.toFixed(2) ?? '--'} | Max: {lungMetrics.fev1?.max?.toFixed(2) ?? '--'}</div>
+            </div>
+            <div className="lung-metric-card" style={{ background: '#f9fafb', borderRadius: 12, padding: 20, minWidth: 220, boxShadow: '0 2px 8px #0001' }}>
+              <div style={{ fontWeight: 600, color: COLORS.diastolic, marginBottom: 4 }}>FEV1/FVC</div>
+              <div style={{ fontSize: 24, fontWeight: 700 }}>{lungMetrics.fev1_fvc?.mean?.toFixed(2) ?? '--'}</div>
+              <div style={{ fontSize: 13, color: '#666' }}>Min: {lungMetrics.fev1_fvc?.min?.toFixed(2) ?? '--'} | Max: {lungMetrics.fev1_fvc?.max?.toFixed(2) ?? '--'}</div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Sleep Distribution Chart */}
       {pieData && (

@@ -1,0 +1,42 @@
+version: "3.9"
+services:
+  preprocess:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    command: ["/bin/sh", "-lc", "chmod +x scripts/run_pipeline.sh && scripts/run_pipeline.sh"]
+    environment:
+      - INPUT_DIR=/app/input
+      - PROCESSED_DIR=/app/processed_data
+    volumes:
+      - .:/app
+      - ./input:/app/input
+      - ./processed_data:/app/processed_data
+    restart: "no"
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      - PROCESSED_DIR=/app/processed_data
+    depends_on:
+      preprocess:
+        condition: service_completed_successfully
+    volumes:
+      - .:/app
+      - ./processed_data:/app/processed_data:ro
+    ports:
+      - "5001:5001"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      backend:
+        condition: service_started
+    ports:
+      - "8080:80"
+    restart: unless-stopped

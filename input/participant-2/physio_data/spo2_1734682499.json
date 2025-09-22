@@ -1,0 +1,16 @@
+[
+  {"activityId": 0, "createdTime": 1758201000, "l_activityId": 415, "logDate": 1758192000, "spo2Value": 98, "status": "new"},
+  {"activityId": 0, "createdTime": 1758287400, "l_activityId": 416, "logDate": 1758278400, "spo2Value": 99, "status": "new"},
+  {"activityId": 0, "createdTime": 1758373800, "l_activityId": 417, "logDate": 1758364800, "spo2Value": 97, "status": "new"},
+  {"activityId": 0, "createdTime": 1758460200, "l_activityId": 418, "logDate": 1758451200, "spo2Value": 98, "status": "new"},
+  {"activityId": 0, "createdTime": 1758546600, "l_activityId": 419, "logDate": 1758537600, "spo2Value": 99, "status": "new"},
+  {"activityId": 0, "createdTime": 1758633000, "l_activityId": 420, "logDate": 1758624000, "spo2Value": 99, "status": "new"},
+  {"activityId": 0, "createdTime": 1758719400, "l_activityId": 421, "logDate": 1758710400, "spo2Value": 98, "status": "new"},
+  {"activityId": 0, "createdTime": 1758805800, "l_activityId": 422, "logDate": 1758796800, "spo2Value": 98, "status": "new"},
+  {"activityId": 0, "createdTime": 1758892200, "l_activityId": 423, "logDate": 1758883200, "spo2Value": 97, "status": "new"},
+  {"activityId": 0, "createdTime": 1758978600, "l_activityId": 424, "logDate": 1758969600, "spo2Value": 98, "status": "new"},
+  {"activityId": 0, "createdTime": 1759065000, "l_activityId": 425, "logDate": 1759056000, "spo2Value": 99, "status": "new"},
+  {"activityId": 0, "createdTime": 1759151400, "l_activityId": 426, "logDate": 1759142400, "spo2Value": 99, "status": "new"},
+  {"activityId": 0, "createdTime": 1759237800, "l_activityId": 427, "logDate": 1759228800, "spo2Value": 98, "status": "new"},
+  {"activityId": 0, "createdTime": 1759324200, "l_activityId": 428, "logDate": 1759315200, "spo2Value": 99, "status": "new"}
+]
