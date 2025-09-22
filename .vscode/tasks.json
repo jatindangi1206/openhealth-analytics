@@ -1,0 +1,26 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Process health data",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"./export_health_data.py"
+			],
+			"problemMatcher": [
+				"$python-pytest"
+			]
+		},
+		{
+			"label": "Run Flask server (.venv)",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"source .venv/bin/activate && cd backend && python server.py"
+			],
+			"isBackground": true
+		}
+	]
+}

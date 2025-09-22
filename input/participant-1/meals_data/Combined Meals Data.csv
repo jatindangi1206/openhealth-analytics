@@ -1,0 +1,43 @@
+meal_id,user_id,dish,time,rating,customization,season_id,image_url,is_deleted
+a1b2c3d4-0001-4001-a001-abcdef123456,participant_01,Oatmeal with Berries,1755286800,4,"No sugar","S01",images/oats.jpg,0
+a1b2c3d4-0002-4002-a002-bcdefa234567,participant_01,Chicken Salad Sandwich,1755312600,5,"Whole wheat bread","S01",images/sandwich.jpg,0
+a1b2c3d4-0003-4003-a003-cdefab345678,participant_01,Grilled Salmon with Asparagus,1755339600,5,"","S01",images/salmon.jpg,0
+a1b2c3d4-0004-4004-a004-defabc456789,participant_01,Scrambled Eggs and Toast,1755373200,4,"","S01",images/eggs.jpg,0
+a1b2c3d4-0005-4005-a005-efabcd567890,participant_01,Lentil Soup,1755399000,4,"","S01",images/soup.jpg,0
+a1b2c3d4-0006-4006-a006-fabcde678901,participant_01,Vegetable Stir-fry,1755426000,3,"Extra spicy","S01",images/stirfry.jpg,0
+a1b2c3d4-0007-4007-a007-abcdef789012,participant_01,Greek Yogurt with Honey,1755459600,5,"","S01",images/yogurt.jpg,0
+a1b2c3d4-0008-4008-a008-bcdefa890123,participant_01,Quinoa Bowl,1755485400,4,"With avocado","S01",images/quinoa.jpg,0
+a1b2c3d4-0009-4009-a009-cdefab901234,participant_01,Pasta with Tomato Sauce,1755512400,3,"","S01",images/pasta.jpg,0
+a1b2c3d4-0010-4010-a010-defabc012345,participant_01,Protein Shake,1755546000,4,"Vanilla flavor","S01",images/shake.jpg,0
+a1b2c3d4-0011-4011-a011-efabcd123456,participant_01,Apple with Peanut Butter,1755571800,5,"","S01",images/apple.jpg,0
+a1b2c3d4-0012-4012-a012-fabcde234567,participant_01,Beef Tacos,1755598800,4,"No sour cream","S01",images/tacos.jpg,0
+a1b2c3d4-0013-4013-a013-abcdef345678,participant_01,Cereal with Milk,1755632400,3,"","S01",images/cereal.jpg,0
+a1b2c3d4-0014-4014-a014-bcdefa456789,participant_01,Tuna Salad,1755658200,4,"On lettuce","S01",images/tuna.jpg,0
+a1b2c3d4-0015-4015-a015-cdefab567890,participant_01,Chicken Curry with Rice,1755685200,5,"","S01",images/curry.jpg,0
+a1b2c3d4-0016-4016-a016-defabc678901,participant_01,Oatmeal with Berries,1755718800,4,"","S01",images/oats.jpg,0
+a1b2c3d4-0017-4017-a017-efabcd789012,participant_01,Leftover Chicken Curry,1755744600,4,"","S01",images/curry.jpg,0
+a1b2c3d4-0018-4018-a018-fabcde890123,participant_01,Steak with Roasted Vegetables,1755771600,5,"Medium rare","S01",images/steak.jpg,0
+a1b2c3d4-0019-4019-a019-abcdef901234,participant_01,Pancakes,1755805200,3,"With maple syrup","S01",images/pancakes.jpg,0
+a1b2c3d4-0020-4020-a020-bcdefa012345,participant_01,Caesar Salad,1755831000,4,"No croutons","S01",images/salad.jpg,0
+a1b2c3d4-0021-4021-a021-cdefab123456,participant_01,Pizza Slice,1755858000,2,"","S01",images/pizza.jpg,0
+a1b2c3d4-0022-4022-a022-defabc234567,participant_01,Scrambled Eggs and Toast,1755891600,4,"","S01",images/eggs.jpg,0
+a1b2c3d4-0023-4023-a023-efabcd345678,participant_01,Burger and Fries,1755917400,3,"","S01",images/burger.jpg,0
+a1b2c3d4-0024-4024-a024-fabcde456789,participant_01,Fish and Chips,1755944400,3,"","S01",images/fish.jpg,0
+a1b2c3d4-0025-4025-a025-abcdef567890,participant_01,Greek Yogurt with Honey,1755978000,5,"","S01",images/yogurt.jpg,0
+a1b2c3d4-0026-4026-a026-bcdefa678901,participant_01,Chicken Salad Sandwich,1756003800,5,"","S01",images/sandwich.jpg,0
+a1b2c3d4-0027-4027-a027-cdefab789012,participant_01,Vegetable Soup,1756030800,4,"","S01",images/soup.jpg,0
+a1b2c3d4-0028-4028-a028-defabc890123,participant_01,Oatmeal with Berries,1756064400,4,"","S01",images/oats.jpg,0
+a1b2c3d4-0029-4029-a029-efabcd901234,participant_01,Leftover Vegetable Soup,1756090200,4,"","S01",images/soup.jpg,0
+a1b2c3d4-0030-4030-a030-fabcde012345,participant_01,Grilled Salmon with Asparagus,1756117200,5,"","S01",images/salmon.jpg,0
+a1b2c3d4-0031-4031-a031-abcdef123456,participant_01,Protein Shake,1756150800,4,"","S01",images/shake.jpg,0
+a1b2c3d4-0032-4032-a032-bcdefa234567,participant_01,Quinoa Bowl,1756176600,5,"With extra veggies","S01",images/quinoa.jpg,0
+a1b2c3d4-0033-4033-a033-cdefab345678,participant_01,Pasta with Tomato Sauce,1756203600,3,"","S01",images/pasta.jpg,0
+a1b2c3d4-0034-4034-a034-defabc456789,participant_01,Scrambled Eggs and Toast,1756237200,4,"","S01",images/eggs.jpg,0
+a1b2c3d4-0035-4035-a035-efabcd567890,participant_01,Tuna Salad,1756263000,4,"","S01",images/tuna.jpg,0
+a1b2c3d4-0036-4036-a036-fabcde678901,participant_01,Chicken Curry with Rice,1756290000,5,"","S01",images/curry.jpg,0
+a1b2c3d4-0037-4037-a037-abcdef789012,participant_01,Oatmeal with Berries,1756323600,4,"","S01",images/oats.jpg,0
+a1b2c3d4-0038-4038-a038-bcdefa890123,participant_01,Apple with Peanut Butter,1756349400,5,"","S01",images/apple.jpg,0
+a1b2c3d4-0039-4039-a039-cdefab901234,participant_01,Steak with Roasted Vegetables,1756376400,5,"","S01",images/steak.jpg,0
+a1b2c3d4-0040-4040-a040-defabc012345,participant_01,Cereal with Milk,1756410000,3,"","S01",images/cereal.jpg,0
+a1b2c3d4-0041-4041-a041-efabcd123456,participant_01,Leftover Steak,1756435800,4,"","S01",images/steak.jpg,0
+a1b2c3d4-0042-4042-a042-fabcde234567,participant_01,Pizza Slice,1756462800,2,"","S01",images/pizza.jpg,0

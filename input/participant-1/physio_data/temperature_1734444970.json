@@ -1,0 +1,16 @@
+[
+  {"activityId": 0, "createdTime": 1755297100, "l_activityId": 501, "logDate": 1755273600, "temperature": 98.4, "status": "new"},
+  {"activityId": 0, "createdTime": 1755383500, "l_activityId": 502, "logDate": 1755360000, "temperature": 98.2, "status": "new"},
+  {"activityId": 0, "createdTime": 1755469900, "l_activityId": 503, "logDate": 1755446400, "temperature": 98.6, "status": "new"},
+  {"activityId": 0, "createdTime": 1755556300, "l_activityId": 504, "logDate": 1755532800, "temperature": 98.1, "status": "new"},
+  {"activityId": 0, "createdTime": 1755642700, "l_activityId": 505, "logDate": 1755619200, "temperature": 98.5, "status": "new"},
+  {"activityId": 0, "createdTime": 1755729100, "l_activityId": 506, "logDate": 1755705600, "temperature": 98.7, "status": "new"},
+  {"activityId": 0, "createdTime": 1755815500, "l_activityId": 507, "logDate": 1755792000, "temperature": 98.3, "status": "new"},
+  {"activityId": 0, "createdTime": 1755901900, "l_activityId": 508, "logDate": 1755878400, "temperature": 98.0, "status": "new"},
+  {"activityId": 0, "createdTime": 1755988300, "l_activityId": 509, "logDate": 1755964800, "temperature": 98.6, "status": "new"},
+  {"activityId": 0, "createdTime": 1756074700, "l_activityId": 510, "logDate": 1756051200, "temperature": 98.2, "status": "new"},
+  {"activityId": 0, "createdTime": 1756161100, "l_activityId": 511, "logDate": 1756137600, "temperature": 98.8, "status": "new"},
+  {"activityId": 0, "createdTime": 1756247500, "l_activityId": 512, "logDate": 1756224000, "temperature": 98.4, "status": "new"},
+  {"activityId": 0, "createdTime": 1756333900, "l_activityId": 513, "logDate": 1756310400, "temperature": 98.1, "status": "new"},
+  {"activityId": 0, "createdTime": 1756420300, "l_activityId": 514, "logDate": 1756396800, "temperature": 98.5, "status": "new"}
+]
