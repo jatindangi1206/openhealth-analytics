@@ -3,19 +3,21 @@ import React, { useState } from 'react';
 export default function Login({ onLogin }) {
   const [username, setUsername] = useState('participant-1');
   const [password, setPassword] = useState('password123');
+  const [participantId, setParticipantId] = useState('participant-1');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [mode, setMode] = useState('login'); // 'login' | 'signup'
 
   const submit = async () => {
     setError(null);
     setLoading(true);
 
     try {
-      const res = await fetch('/login', {
+      const res = await fetch(mode === 'signup' ? '/signup' : '/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify(mode === 'signup' ? { username, password, participant_id: participantId } : { username, password }),
       });
 
       if (!res.ok) throw new Error('Invalid credentials');
@@ -25,7 +27,7 @@ export default function Login({ onLogin }) {
       
       if (!token) throw new Error('No token returned');
       
-      onLogin(token);
+  onLogin(token);
     } catch (err) {
       setError(err.message || 'Login failed');
     } finally {
@@ -356,86 +358,46 @@ export default function Login({ onLogin }) {
 
       <div className="login-card">
         <div className="login-header">
-          <div className="login-logo">CH</div>
-          <h1 className="login-title">Welcome Back</h1>
-          <p className="login-subtitle">Sign in to your account to continue</p>
+          <div className="login-logo">KH</div>
+          <div className="login-title">{mode === 'signup' ? 'Create Account' : 'Sign In'}</div>
+          <div className="login-subtitle">Access your personal health dashboard</div>
         </div>
 
-        <div>
-          <div className="form-group">
-            <label htmlFor="username" className="form-label">Username</label>
-            <input
-              id="username"
-              type="text"
-              className="form-input"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your username"
-              required
-              autoComplete="username"
-            />
+        <div className="form-group">
+          <label className="form-label">Username</label>
+          <div className="input-wrapper">
+            <input className="form-input" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="username" />
           </div>
+        </div>
 
+        {mode === 'signup' && (
           <div className="form-group">
-            <label htmlFor="password" className="form-label">Password</label>
+            <label className="form-label">Participant ID</label>
             <div className="input-wrapper">
-              <input
-                id="password"
-                type={showPassword ? 'text' : 'password'}
-                className="form-input"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter your password"
-                required
-                autoComplete="current-password"
-                style={{ paddingRight: '3rem' }}
-              />
-              <button
-                type="button"
-                className="password-toggle"
-                onClick={() => setShowPassword(!showPassword)}
-                aria-label={showPassword ? 'Hide password' : 'Show password'}
-              >
-                <EyeIcon isVisible={showPassword} />
-              </button>
+              <input className="form-input" value={participantId} onChange={(e) => setParticipantId(e.target.value)} placeholder="participant-1" />
             </div>
           </div>
+        )}
 
-          <button 
-            type="button" 
-            className="login-button"
-            disabled={loading}
-            onClick={submit}
-            aria-describedby={error ? 'error-message' : undefined}
-          >
-            {loading ? (
-              <>
-                <LoadingSpinner />
-                Signing in...
-              </>
-            ) : (
-              'Sign In'
-            )}
-          </button>
+        <div className="form-group">
+          <label className="form-label">Password</label>
+          <div className="input-wrapper">
+            <input className="form-input" type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" />
+          </div>
+        </div>
 
-          {error && (
-            <div id="error-message" className="error-message" role="alert">
-              <svg className="error-icon" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-              </svg>
-              {error}
-            </div>
+        {error && <div style={{ color: '#b91c1c', marginBottom: '1rem' }}>{error}</div>}
+
+        <button disabled={loading} onClick={submit} className="sidebar-btn selected" style={{ width: '100%', padding: '0.9rem', borderRadius: 8 }}>
+          {loading ? 'Please wait…' : (mode === 'signup' ? 'Sign Up' : 'Sign In')}
+        </button>
+
+        <div style={{ marginTop: '1rem', textAlign: 'center', color: '#6b7280' }}>
+          {mode === 'signup' ? (
+            <span>Already have an account? <a href="#" onClick={(e) => { e.preventDefault(); setMode('login'); }}>Sign In</a></span>
+          ) : (
+            <span>New here? <a href="#" onClick={(e) => { e.preventDefault(); setMode('signup'); }}>Create Account</a></span>
           )}
-        </div>
-
-        <div className="divider">
-          <span className="divider-text">Demo Account</span>
-        </div>
-
-        <div className="demo-info">
-          <strong>Demo Credentials:</strong>
-          Username: participant-1<br />
-          Password: password123
         </div>
       </div>
     </div>

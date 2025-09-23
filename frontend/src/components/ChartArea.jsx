@@ -187,8 +187,11 @@ export default function ChartArea({ selected, token }) {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/my-data", { headers: { Authorization: token } });
-      if (!res.ok) throw new Error('Failed to fetch data');
+  const res = await fetch("/api/my-data", { headers: { Authorization: `Bearer ${token}` } });
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(`Failed to fetch data (${res.status}). ${text || ''}`.trim());
+      }
       const raw = await res.json();
       const { arr, sleepStageArr } = transformData(raw);
       setData(arr);
@@ -266,7 +269,7 @@ export default function ChartArea({ selected, token }) {
             ))}
           </defs>
           <XAxis 
-            dataKey="formattedDate" 
+            dataKey="day" 
             tick={{ fontSize: 12, fill: '#6b7280' }}
             axisLine={{ stroke: '#e5e7eb' }}
             tickLine={{ stroke: '#e5e7eb' }}
@@ -622,34 +625,6 @@ export default function ChartArea({ selected, token }) {
           </button>
         </div>
       </div>
-
-      {/* Statistics Cards */}
-      {!loading && !error && selected.length > 0 && (
-        <div className="stats-grid">
-          {selected.map(key => {
-            const stats = getStats(key);
-            if (!stats) return null;
-            
-            return (
-              <div 
-                key={key} 
-                className="stat-card" 
-                style={{ '--stat-color': COLORS[key] }}
-              >
-                <div className="stat-title">{LABELS[key]}</div>
-                <div className="stat-value">
-                  {stats.latest.toFixed(1)} {UNITS[key]}
-                </div>
-                <div className="stat-range">
-                  Range: {stats.min.toFixed(1)} - {stats.max.toFixed(1)} {UNITS[key]}
-                  <br />
-                  Avg: {stats.avg.toFixed(1)} {UNITS[key]}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
 
       {/* Main Chart */}
       <div style={{ minHeight: '400px' }}>

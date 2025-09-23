@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Sidebar from "./components/Sidebar";
 import ChartArea from "./components/ChartArea";
 import BaselineOverview from "./components/BaselineOverview";
 import Disclaimer from "./components/Disclaimer";
 import Login from "./components/Login";
+import Admin from "./components/Admin";
 import "./App.css";
 
 const PARAMETERS = [
@@ -19,6 +20,17 @@ const PARAMETERS = [
 export default function App() {
   const [selected, setSelected] = useState(["systolic"]);
   const [token, setToken] = useState(null);
+  const [showAdmin, setShowAdmin] = useState(false);
+
+  const claims = useMemo(() => {
+    if (!token) return null;
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1] || ""));
+      return payload || null;
+    } catch {
+      return null;
+    }
+  }, [token]);
 
   useEffect(() => {
     const saved = localStorage.getItem('auth_token');
@@ -42,7 +54,12 @@ export default function App() {
           <span>Koita Centre for Digital Health | Ashoka University</span>
         </div>
         {token && (
-          <button onClick={logout} style={{ marginLeft: 'auto' }}>Logout</button>
+          <div style={{ marginLeft: 'auto', display: 'flex', gap: 8 }}>
+            {claims?.role === 'admin' && (
+              <button onClick={() => setShowAdmin(!showAdmin)}>{showAdmin ? 'Dashboard' : 'Admin'}</button>
+            )}
+            <button onClick={logout}>Logout</button>
+          </div>
         )}
       </header>
       <div className="app-container">
@@ -60,11 +77,17 @@ export default function App() {
               />
             </aside>
             <main className="main-content">
-              <h1 className="swiss-title">Personal Health Data Report</h1>
-              <h2 className="swiss-subtitle">Trend Graphs</h2>
-              <ChartArea selected={selected} token={token} />
-              <BaselineOverview token={token} />
-              <Disclaimer />
+              {claims?.role === 'admin' && showAdmin ? (
+                <Admin token={token} />
+              ) : (
+                <>
+                  <h1 className="swiss-title">Personal Health Data Report</h1>
+                  <h2 className="swiss-subtitle">Trend Graphs</h2>
+                  <ChartArea selected={selected} token={token} />
+                  <BaselineOverview token={token} />
+                  <Disclaimer />
+                </>
+              )}
             </main>
           </>
         )}

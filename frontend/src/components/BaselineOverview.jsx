@@ -49,9 +49,9 @@ export default function BaselineOverview({ token }) {
   const [meals, setMeals] = useState([]); // array of { day, time, dish }
   useEffect(() => {
     if (!token) return;
-    fetch("/api/my-data", { headers: { Authorization: token } })
+  fetch("/api/my-data", { headers: { Authorization: `Bearer ${token}` } })
       .then((res) => {
-        if (!res.ok) throw new Error('Failed to fetch data');
+        if (!res.ok) return res.text().then(t => { throw new Error(`Failed to fetch data (${res.status}). ${t || ''}`.trim()); });
         return res.json();
       })
       .then((raw) => {
@@ -169,6 +169,43 @@ export default function BaselineOverview({ token }) {
 
   return (
     <div className="baseline-overview">
+      <style jsx>{`
+        .custom-meal-tooltip {
+          background: white;
+          border: 1px solid #e2e8f0;
+          border-radius: 8px;
+          padding: 12px 16px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          min-width: 180px;
+        }
+        .meal-tooltip-header {
+          font-weight: 600;
+          font-size: 14px;
+          color: #4a5568;
+          margin-bottom: 8px;
+          padding-bottom: 6px;
+          border-bottom: 1px solid #edf2f7;
+        }
+        .meal-tooltip-content {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+        .meal-tooltip-item {
+          display: flex;
+          justify-content: space-between;
+          font-size: 13px;
+        }
+        .meal-tooltip-label {
+          color: #718096;
+          font-weight: 500;
+          margin-right: 8px;
+        }
+        .meal-tooltip-value {
+          color: #2d3748;
+          font-weight: 600;
+        }
+      `}</style>
       <h3>Health Baseline Overview</h3>
       <div className="baseline-blocks">
         {ALL_KEYS.map((key) => {
@@ -208,21 +245,43 @@ export default function BaselineOverview({ token }) {
               />
               <Tooltip
                 cursor={{ strokeDasharray: '3 3' }}
-                formatter={(value, name, props) => {
-                  if (name === 'Time') return [props.payload._timeLabel, 'Time'];
-                  if (name === 'dish') return [props.payload.dish, 'Dish'];
-                  return value;
-                }}
-                labelFormatter={(label, payload) => {
-                  if (payload && payload.length > 0) {
-                    return `${payload[0].payload._dayLabel}`;
+                content={({ active, payload }) => {
+                  if (active && payload && payload.length) {
+                    const data = payload[0].payload;
+                    return (
+                      <div className="custom-meal-tooltip">
+                        <div className="meal-tooltip-header">{data._dayLabel}</div>
+                        <div className="meal-tooltip-content">
+                          <div className="meal-tooltip-item">
+                            <span className="meal-tooltip-label">Dish:</span>
+                            <span className="meal-tooltip-value">{data.dish}</span>
+                          </div>
+                          <div className="meal-tooltip-item">
+                            <span className="meal-tooltip-label">Time:</span>
+                            <span className="meal-tooltip-value">{data._timeLabel}</span>
+                          </div>
+                        </div>
+                      </div>
+                    );
                   }
-                  return label;
+                  return null;
                 }}
               />
-              <Scatter name="Meals" data={meals} fill="#805ad5">
-                <LabelList dataKey="dish" position="right" />
-              </Scatter>
+              <Scatter 
+                name="Meals" 
+                data={meals} 
+                fill="#805ad5"
+                shape={(props) => (
+                  <circle 
+                    cx={props.cx} 
+                    cy={props.cy} 
+                    r={6}
+                    fill="#805ad5"
+                    stroke="#ffffff"
+                    strokeWidth={2}
+                  />
+                )}
+              />
             </ScatterChart>
           </ResponsiveContainer>
         )}
