@@ -1,4 +1,104 @@
 {
+  "anthro": {
+    "time_series": [
+      {
+        "date": "2025-01-10 12:33:44.191000",
+        "height_cm": 157.46666666666667,
+        "weight_kg": 87.40000000000002,
+        "mid_arm_circumference_cm": 32.699999999999996,
+        "waist_circumference_cm": 112.13333333333333,
+        "hip_circumference_cm": 119.0,
+        "skinfold_biceps_mm": 15.633333333333333,
+        "skinfold_subscapular_mm": 24.566666666666666,
+        "grip_strength_left_kg": 26.5,
+        "grip_strength_right_kg": 19.333333333333332,
+        "filledBy": "mayank.garg@ashoka.edu.in",
+        "bmi": 35.247974384141806
+      }
+    ],
+    "metrics": {
+      "height_cm": {
+        "mean": 157.46666666666667,
+        "median": 157.46666666666667,
+        "std": null,
+        "count": "1",
+        "min": 157.46666666666667,
+        "max": 157.46666666666667
+      },
+      "weight_kg": {
+        "mean": 87.40000000000002,
+        "median": 87.40000000000002,
+        "std": null,
+        "count": "1",
+        "min": 87.40000000000002,
+        "max": 87.40000000000002
+      },
+      "mid_arm_circumference_cm": {
+        "mean": 32.699999999999996,
+        "median": 32.699999999999996,
+        "std": null,
+        "count": "1",
+        "min": 32.699999999999996,
+        "max": 32.699999999999996
+      },
+      "waist_circumference_cm": {
+        "mean": 112.13333333333333,
+        "median": 112.13333333333333,
+        "std": null,
+        "count": "1",
+        "min": 112.13333333333333,
+        "max": 112.13333333333333
+      },
+      "hip_circumference_cm": {
+        "mean": 119.0,
+        "median": 119.0,
+        "std": null,
+        "count": "1",
+        "min": 119.0,
+        "max": 119.0
+      },
+      "skinfold_biceps_mm": {
+        "mean": 15.633333333333333,
+        "median": 15.633333333333333,
+        "std": null,
+        "count": "1",
+        "min": 15.633333333333333,
+        "max": 15.633333333333333
+      },
+      "skinfold_subscapular_mm": {
+        "mean": 24.566666666666666,
+        "median": 24.566666666666666,
+        "std": null,
+        "count": "1",
+        "min": 24.566666666666666,
+        "max": 24.566666666666666
+      },
+      "grip_strength_left_kg": {
+        "mean": 26.5,
+        "median": 26.5,
+        "std": null,
+        "count": "1",
+        "min": 26.5,
+        "max": 26.5
+      },
+      "grip_strength_right_kg": {
+        "mean": 19.333333333333332,
+        "median": 19.333333333333332,
+        "std": null,
+        "count": "1",
+        "min": 19.333333333333332,
+        "max": 19.333333333333332
+      },
+      "bmi": {
+        "mean": 35.247974384141806,
+        "median": 35.247974384141806,
+        "std": null,
+        "count": "1",
+        "min": 35.247974384141806,
+        "max": 35.247974384141806
+      }
+    }
+  },
   "blood_pressure": {
     "time_series": [
       {

@@ -358,7 +358,7 @@ export default function Login({ onLogin }) {
 
       <div className="login-card">
         <div className="login-header">
-          <div className="login-logo">KH</div>
+          <div className="login-logo">KCDH-A</div>
           <div className="login-title">{mode === 'signup' ? 'Create Account' : 'Sign In'}</div>
           <div className="login-subtitle">Access your personal health dashboard</div>
         </div>

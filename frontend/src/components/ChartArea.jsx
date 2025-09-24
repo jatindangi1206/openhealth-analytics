@@ -45,6 +45,28 @@ const UNITS = {
   temperature: "°C",
 };
 
+const ANTHRO_LABELS = {
+  height_cm: "Height",
+  weight_kg: "Weight",
+  bmi: "BMI",
+  waist_circumference_cm: "Waist",
+  hip_circumference_cm: "Hip",
+  mid_arm_circumference_cm: "Mid-Arm",
+  grip_strength_left_kg: "Grip Left",
+  grip_strength_right_kg: "Grip Right",
+};
+
+const ANTHRO_UNITS = {
+  height_cm: "cm",
+  weight_kg: "kg",
+  bmi: "",
+  waist_circumference_cm: "cm",
+  hip_circumference_cm: "cm",
+  mid_arm_circumference_cm: "cm",
+  grip_strength_left_kg: "kg",
+  grip_strength_right_kg: "kg",
+};
+
 function transformData(raw) {
   const dateMap = {};
   let sleepStageArr = [];
@@ -181,6 +203,7 @@ export default function ChartArea({ selected, token }) {
   const [error, setError] = useState(null);
   const [chartType, setChartType] = useState('line');
   const [lungMetrics, setLungMetrics] = useState(null);
+  const [anthro, setAnthro] = useState(null);
 
   const fetchData = async () => {
     if (!token) return;
@@ -201,6 +224,29 @@ export default function ChartArea({ selected, token }) {
         setLungMetrics(raw.lung_function.metrics);
       } else {
         setLungMetrics(null);
+      }
+      // Anthropometrics
+      if (raw.anthro) {
+        const m = raw.anthro.metrics || {};
+        const latest = Array.isArray(raw.anthro.time_series) && raw.anthro.time_series.length > 0
+          ? raw.anthro.time_series[raw.anthro.time_series.length - 1]
+          : {};
+        // Prefer metrics mean, fallback to latest point
+        const val = (k) => (m[k]?.mean ?? latest?.[k] ?? null);
+        setAnthro({
+          height_cm: val('height_cm'),
+          weight_kg: val('weight_kg'),
+          bmi: val('bmi'),
+          waist_circumference_cm: val('waist_circumference_cm'),
+          hip_circumference_cm: val('hip_circumference_cm'),
+          mid_arm_circumference_cm: val('mid_arm_circumference_cm'),
+          grip_strength_left_kg: val('grip_strength_left_kg'),
+          grip_strength_right_kg: val('grip_strength_right_kg'),
+          filledBy: latest?.filledBy || null,
+          date: latest?.date || null,
+        });
+      } else {
+        setAnthro(null);
       }
     } catch (e) {
       console.error('Data fetch error', e);
@@ -313,6 +359,72 @@ export default function ChartArea({ selected, token }) {
           border: 1px solid rgba(0, 0, 0, 0.05);
           position: relative;
           overflow: hidden;
+        }
+
+        .anthro-section {
+          margin-bottom: 1.75rem;
+        }
+        .anthro-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          gap: 1rem;
+          margin-bottom: 0.75rem;
+        }
+        .anthro-title {
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: #d52b1e;
+        }
+        .anthro-subtle {
+          color: #6b7280;
+          font-size: 0.875rem;
+        }
+        .anthro-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+          gap: 0.75rem;
+        }
+        .anthro-card {
+          background: linear-gradient(145deg, #ffffff 0%, #f9fafb 100%);
+          border: 1px solid #e5e7eb;
+          border-radius: 12px;
+          padding: 14px 16px;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+          position: relative;
+          overflow: hidden;
+        }
+        .anthro-card::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0; height: 3px;
+          background: linear-gradient(90deg, #d52b1e 0%, #ff5252 50%, #d52b1e 100%);
+        }
+        .anthro-label {
+          font-size: 0.75rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: .05em;
+          color: #6b7280;
+          margin-bottom: 6px;
+        }
+        .anthro-value {
+          font-size: 1.25rem;
+          font-weight: 800;
+          color: #1f2937;
+          display: flex;
+          align-items: baseline;
+          gap: 6px;
+        }
+        .anthro-unit {
+          font-size: 0.8rem;
+          color: #9ca3af;
+          font-weight: 600;
+        }
+        .anthro-footnote {
+          font-size: 0.72rem;
+          color: #6b7280;
+          margin-top: 4px;
         }
 
         .elegant-chart-area::before {
@@ -608,6 +720,52 @@ export default function ChartArea({ selected, token }) {
         }
       `}</style>
 
+      {/* Anthropometrics Section */}
+      {anthro && (
+        <div className="anthro-section">
+          <div className="anthro-header">
+            <h3 className="anthro-title">Anthropometrics</h3>
+            <div className="anthro-subtle">
+              {anthro.date ? new Date(String(anthro.date).replace(' ', 'T')).toLocaleString() : ''}
+              {anthro.filledBy ? ` • ${anthro.filledBy}` : ''}
+            </div>
+          </div>
+          <div className="anthro-grid">
+            {[
+              'height_cm',
+              'weight_kg',
+              'bmi',
+              'waist_circumference_cm',
+              'hip_circumference_cm',
+              'mid_arm_circumference_cm',
+              'grip_strength_left_kg',
+              'grip_strength_right_kg',
+            ].map((k) => {
+              const val = anthro?.[k];
+              const display = typeof val === 'number' ? (k === 'bmi' ? val.toFixed(1) : val.toFixed(1)) : '--';
+              const unit = ANTHRO_UNITS[k] || '';
+              let footnote = '';
+              if (k === 'bmi' && typeof val === 'number') {
+                if (val < 18.5) footnote = 'Underweight';
+                else if (val < 25) footnote = 'Normal';
+                else if (val < 30) footnote = 'Overweight';
+                else footnote = 'Obese';
+              }
+              return (
+                <div key={k} className="anthro-card">
+                  <div className="anthro-label">{ANTHRO_LABELS[k]}</div>
+                  <div className="anthro-value">
+                    <span>{display}</span>
+                    {unit && <span className="anthro-unit">{unit}</span>}
+                  </div>
+                  {footnote && <div className="anthro-footnote">{footnote}</div>}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       <div className="chart-header">
         <h3 className="chart-title">Health Metrics Overview</h3>
         <div className="chart-controls">
@@ -681,7 +839,7 @@ export default function ChartArea({ selected, token }) {
               </Pie>
               <Legend content={<CustomLegend />} />
               <Tooltip 
-                formatter={(value, name) => [`${value.toFixed(1)} hrs`, name]}
+                formatter={(value, name) => [`${value.toFixed(1)} minutes`, name]}
               />
             </PieChart>
           </ResponsiveContainer>

@@ -128,6 +128,25 @@ def load_lung_function_csv(file_path: str) -> pd.DataFrame:
     return df
 
 
+def load_anthro_data_csv(file_path: str) -> pd.DataFrame:
+    """
+    Load anthropometric data CSV file with embedded JSON data.
+    
+    Args:
+        file_path: Path to the anthropometric data CSV file
+        
+    Returns:
+        DataFrame with anthropometric data
+    """
+    df = pd.read_csv(file_path)
+    
+    # Parse JSON data in the 'data' column
+    if 'data' in df.columns:
+        df['parsed_data'] = df['data'].apply(json.loads)
+    
+    return df
+
+
 def discover_input_files(base_dir: str) -> Dict[str, str]:
     """
     Discover all input files in the structured folder system.
@@ -140,6 +159,13 @@ def discover_input_files(base_dir: str) -> Dict[str, str]:
     """
     input_files = {}
     
+    # Anthropometric data (expected single CSV)
+    anthro_dir = os.path.join(base_dir, "anthro_data")
+    if os.path.exists(anthro_dir):
+        csv_files = [f for f in os.listdir(anthro_dir) if f.endswith('.csv')]
+        if csv_files:
+            input_files["anthro"] = os.path.join(anthro_dir, csv_files[0])
+
     # Lung data (expected single CSV)
     lungs_dir = os.path.join(base_dir, "lungs_data")
     if os.path.exists(lungs_dir):
@@ -209,6 +235,9 @@ def load_all_data(input_dir: str) -> Dict[str, Union[pd.DataFrame, List]]:
     file_paths = discover_input_files(input_dir)
     loaded_data = {}
     
+    if "anthro" in file_paths:
+        loaded_data["anthro"] = load_anthro_data_csv(file_paths["anthro"])
+
     # Load each file based on its type
     if "blood_pressure" in file_paths:
         loaded_data["blood_pressure"] = load_blood_pressure_csv(file_paths["blood_pressure"])

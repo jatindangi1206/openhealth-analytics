@@ -8,7 +8,85 @@ Handles normalization, metrics computation, and statistical analysis.
 
 import pandas as pd
 import numpy as np
+import json
 from typing import Dict, List, Any, Tuple, Union
+
+
+def process_anthro_data(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Process anthropometric data with embedded JSON per row.
+
+    Input schema example:
+    - columns: createdAt (ms epoch), filledBy, data (JSON string) or parsed_data (dict)
+    - data fields include height, weight, midArmCircumference, waistCircumference,
+      hipCircumference, skinFoldBiceps, skinFoldSubscapular, gripStrengthLeft,
+      gripStrengthRight; each contains {first, second, third}
+
+    Output:
+    - one row per entry with averaged values; also compute BMI if height/weight available
+    - date column as pandas Timestamp
+    """
+    processed_rows: List[Dict[str, Any]] = []
+
+    for _, row in df.iterrows():
+        raw = row.get('parsed_data') if 'parsed_data' in df.columns else row.get('data')
+        # Ensure raw is a dict
+        if isinstance(raw, str):
+            try:
+                raw = json.loads(raw)
+            except Exception:
+                continue
+        if not isinstance(raw, dict):
+            continue
+
+        created_at = row.get('createdAt')
+        # createdAt in sample seems to be ms epoch; convert to seconds if needed
+        if pd.isna(created_at):
+            date_val = pd.NaT
+        else:
+            # if timestamp is too large, assume ms
+            ts = int(created_at)
+            if ts > 10_000_000_000:  # greater than ~Sat Nov 20 2286 in seconds
+                date_val = pd.to_datetime(ts, unit='ms')
+            else:
+                date_val = pd.to_datetime(ts, unit='s')
+
+        def avg_three(v: Any) -> float:
+            if isinstance(v, dict):
+                vals = [v.get('first'), v.get('second'), v.get('third')]
+                vals = [x for x in vals if x is not None]
+                return float(np.mean(vals)) if vals else np.nan
+            return float(v) if v is not None else np.nan
+
+        out: Dict[str, Any] = {
+            'date': date_val,
+            'height_cm': avg_three(raw.get('height')),
+            'weight_kg': avg_three(raw.get('weight')),
+            'mid_arm_circumference_cm': avg_three(raw.get('midArmCircumference')),
+            'waist_circumference_cm': avg_three(raw.get('waistCircumference')),
+            'hip_circumference_cm': avg_three(raw.get('hipCircumference')),
+            'skinfold_biceps_mm': avg_three(raw.get('skinFoldBiceps')),
+            'skinfold_subscapular_mm': avg_three(raw.get('skinFoldSubscapular')),
+            'grip_strength_left_kg': avg_three(raw.get('gripStrengthLeft')),
+            'grip_strength_right_kg': avg_three(raw.get('gripStrengthRight')),
+            'filledBy': row.get('filledBy')
+        }
+
+        # Compute BMI (kg/m^2), height is in cm
+        h_cm = out['height_cm']
+        w_kg = out['weight_kg']
+        if pd.notna(h_cm) and h_cm > 0 and pd.notna(w_kg):
+            h_m = h_cm / 100.0
+            out['bmi'] = w_kg / (h_m * h_m)
+        else:
+            out['bmi'] = np.nan
+
+        processed_rows.append(out)
+
+    result = pd.DataFrame(processed_rows)
+    if 'date' in result.columns:
+        result.sort_values('date', inplace=True)
+    return result
 
 
 def convert_unix_to_datetime(timestamp: int) -> pd.Timestamp:
@@ -327,6 +405,28 @@ def process_all_data(raw_data: Dict[str, Union[pd.DataFrame, List]]) -> Dict[str
     """
     processed_data = {}
     
+    # Process anthropometric data
+    if 'anthro' in raw_data:
+        anthro_df = process_anthro_data(raw_data['anthro'])
+        processed_data['anthro'] = {
+            'time_series': anthro_df,
+            'metrics': calculate_metrics(
+                anthro_df,
+                [
+                    'height_cm',
+                    'weight_kg',
+                    'mid_arm_circumference_cm',
+                    'waist_circumference_cm',
+                    'hip_circumference_cm',
+                    'skinfold_biceps_mm',
+                    'skinfold_subscapular_mm',
+                    'grip_strength_left_kg',
+                    'grip_strength_right_kg',
+                    'bmi'
+                ]
+            )
+        }
+
     # Process blood pressure data
     if 'blood_pressure' in raw_data:
         bp_df = process_blood_pressure_data(raw_data['blood_pressure'])
