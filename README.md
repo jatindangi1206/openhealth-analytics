@@ -258,4 +258,4 @@ To add support for new types of health data:
 - Each participant can only access their own data
 - API endpoints are protected with appropriate authentication
 
-**Note:** This is a demo application. For production use, consider implementing additional security measures and using a proper database.
+
