@@ -720,51 +720,6 @@ export default function ChartArea({ selected, token }) {
         }
       `}</style>
 
-      {/* Anthropometrics Section */}
-      {anthro && (
-        <div className="anthro-section">
-          <div className="anthro-header">
-            <h3 className="anthro-title">Anthropometrics</h3>
-            <div className="anthro-subtle">
-              {anthro.date ? new Date(String(anthro.date).replace(' ', 'T')).toLocaleString() : ''}
-              {anthro.filledBy ? ` • ${anthro.filledBy}` : ''}
-            </div>
-          </div>
-          <div className="anthro-grid">
-            {[
-              'height_cm',
-              'weight_kg',
-              'bmi',
-              'waist_circumference_cm',
-              'hip_circumference_cm',
-              'mid_arm_circumference_cm',
-              'grip_strength_left_kg',
-              'grip_strength_right_kg',
-            ].map((k) => {
-              const val = anthro?.[k];
-              const display = typeof val === 'number' ? (k === 'bmi' ? val.toFixed(1) : val.toFixed(1)) : '--';
-              const unit = ANTHRO_UNITS[k] || '';
-              let footnote = '';
-              if (k === 'bmi' && typeof val === 'number') {
-                if (val < 18.5) footnote = 'Underweight';
-                else if (val < 25) footnote = 'Normal';
-                else if (val < 30) footnote = 'Overweight';
-                else footnote = 'Obese';
-              }
-              return (
-                <div key={k} className="anthro-card">
-                  <div className="anthro-label">{ANTHRO_LABELS[k]}</div>
-                  <div className="anthro-value">
-                    <span>{display}</span>
-                    {unit && <span className="anthro-unit">{unit}</span>}
-                  </div>
-                  {footnote && <div className="anthro-footnote">{footnote}</div>}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
 
       <div className="chart-header">
         <h3 className="chart-title">Health Metrics Overview</h3>
@@ -789,24 +744,6 @@ export default function ChartArea({ selected, token }) {
         {renderChart()}
       </div>
 
-      {/* Lung Function Section */}
-      {lungMetrics && (
-        <div className="lung-section" style={{ margin: '2rem 0' }}>
-          <h3 style={{ color: COLORS.systolic, marginBottom: 12 }}>Lung Function</h3>
-          <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap' }}>
-            <div className="lung-metric-card" style={{ background: '#f9fafb', borderRadius: 12, padding: 20, minWidth: 220, boxShadow: '0 2px 8px #0001' }}>
-              <div style={{ fontWeight: 600, color: COLORS.systolic, marginBottom: 4 }}>FEV1</div>
-              <div style={{ fontSize: 24, fontWeight: 700 }}>{lungMetrics.fev1?.mean?.toFixed(2) ?? '--'} <span style={{ fontSize: 14, color: '#888' }}>L</span></div>
-              <div style={{ fontSize: 13, color: '#666' }}>Min: {lungMetrics.fev1?.min?.toFixed(2) ?? '--'} | Max: {lungMetrics.fev1?.max?.toFixed(2) ?? '--'}</div>
-            </div>
-            <div className="lung-metric-card" style={{ background: '#f9fafb', borderRadius: 12, padding: 20, minWidth: 220, boxShadow: '0 2px 8px #0001' }}>
-              <div style={{ fontWeight: 600, color: COLORS.diastolic, marginBottom: 4 }}>FEV1/FVC</div>
-              <div style={{ fontSize: 24, fontWeight: 700 }}>{lungMetrics.fev1_fvc?.mean?.toFixed(2) ?? '--'}</div>
-              <div style={{ fontSize: 13, color: '#666' }}>Min: {lungMetrics.fev1_fvc?.min?.toFixed(2) ?? '--'} | Max: {lungMetrics.fev1_fvc?.max?.toFixed(2) ?? '--'}</div>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Sleep Distribution Chart */}
       {pieData && (

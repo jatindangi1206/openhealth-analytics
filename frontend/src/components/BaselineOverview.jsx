@@ -1,37 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { ScatterChart, Scatter, XAxis, YAxis, Tooltip, ResponsiveContainer, LabelList } from "recharts";
+import { ScatterChart, Scatter, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
-const ALL_KEYS = [
-  "systolic",
-  "diastolic",
-  "heartRate",
-  "sleep",
-  "spo2",
-  "steps",
-  "temperature",
-];
-
-const LABELS = {
-  systolic: "Systolic BP",
-  diastolic: "Diastolic BP",
-  heartRate: "Heart Rate",
-  sleep: "Sleep (hrs)",
-  spo2: "SpO₂ (%)",
-  steps: "Steps",
-  temperature: "Temperature (°C)",
+const ANTHRO_LABELS = {
+  height_cm: "Height",
+  weight_kg: "Weight",
+  bmi: "BMI",
+  waist_circumference_cm: "Waist",
+  hip_circumference_cm: "Hip",
+  mid_arm_circumference_cm: "Mid-Arm",
+  grip_strength_left_kg: "Grip Left",
+  grip_strength_right_kg: "Grip Right",
 };
 
-function getStats(data, key) {
-  const values = data.map((d) => d[key]).filter((v) => v !== undefined && v !== null);
-  if (!values.length) return null;
-  const min = Math.min(...values);
-  const max = Math.max(...values);
-  const sorted = [...values].sort((a, b) => a - b);
-  const median = sorted.length % 2 === 0
-    ? (sorted[sorted.length / 2 - 1] + sorted[sorted.length / 2]) / 2
-    : sorted[Math.floor(sorted.length / 2)];
-  return { min, max, median };
-}
+const ANTHRO_UNITS = {
+  height_cm: "cm",
+  weight_kg: "kg",
+  bmi: "",
+  waist_circumference_cm: "cm",
+  hip_circumference_cm: "cm",
+  mid_arm_circumference_cm: "cm",
+  grip_strength_left_kg: "kg",
+  grip_strength_right_kg: "kg",
+};
 
 // Helper to format time as HH:MM
 function formatTime(dateStr) {
@@ -47,6 +37,8 @@ function getDayLabel(idx) {
 export default function BaselineOverview({ token }) {
   const [data, setData] = useState([]);
   const [meals, setMeals] = useState([]); // array of { day, time, dish }
+  const [anthro, setAnthro] = useState(null);
+  const [lungMetrics, setLungMetrics] = useState(null);
   useEffect(() => {
     if (!token) return;
   fetch("/api/my-data", { headers: { Authorization: `Bearer ${token}` } })
@@ -101,6 +93,34 @@ export default function BaselineOverview({ token }) {
           });
         }
         setData(Object.values(dateMap));
+        // Anthropometrics
+        if (raw.anthro) {
+          const m = raw.anthro.metrics || {};
+          const latest = Array.isArray(raw.anthro.time_series) && raw.anthro.time_series.length > 0
+            ? raw.anthro.time_series[raw.anthro.time_series.length - 1]
+            : {};
+          const val = (k) => (m[k]?.mean ?? latest?.[k] ?? null);
+          setAnthro({
+            height_cm: val('height_cm'),
+            weight_kg: val('weight_kg'),
+            bmi: val('bmi'),
+            waist_circumference_cm: val('waist_circumference_cm'),
+            hip_circumference_cm: val('hip_circumference_cm'),
+            mid_arm_circumference_cm: val('mid_arm_circumference_cm'),
+            grip_strength_left_kg: val('grip_strength_left_kg'),
+            grip_strength_right_kg: val('grip_strength_right_kg'),
+            filledBy: latest?.filledBy || null,
+            date: latest?.date || null,
+          });
+        } else {
+          setAnthro(null);
+        }
+        // Lung function metrics
+        if (raw.lung_function && raw.lung_function.metrics) {
+          setLungMetrics(raw.lung_function.metrics);
+        } else {
+          setLungMetrics(null);
+        }
         // Prepare meal timeline data (robust to different keys)
         const mealArr = [];
         if (raw.meals?.time_series && Array.isArray(raw.meals.time_series)) {
@@ -170,6 +190,108 @@ export default function BaselineOverview({ token }) {
   return (
     <div className="baseline-overview">
       <style jsx>{`
+        .baseline-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          gap: 1rem;
+          margin-bottom: 1rem;
+        }
+        .baseline-title {
+          font-size: 1.4rem;
+          font-weight: 800;
+          color: #d52b1e;
+        }
+        .anthro-section {
+          margin: 1rem 0 1.5rem;
+        }
+        .anthro-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          gap: 1rem;
+          margin-bottom: 0.75rem;
+        }
+        .anthro-title {
+          font-size: 1.1rem;
+          font-weight: 700;
+          color: #d52b1e;
+        }
+        .anthro-subtle {
+          color: #6b7280;
+          font-size: 0.875rem;
+        }
+        .anthro-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+          gap: 0.75rem;
+        }
+        .anthro-card {
+          background: linear-gradient(145deg, #ffffff 0%, #f9fafb 100%);
+          border: 1px solid #e5e7eb;
+          border-radius: 12px;
+          padding: 14px 16px;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+          position: relative;
+          overflow: hidden;
+        }
+        .anthro-card::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0; height: 3px;
+          background: linear-gradient(90deg, #d52b1e 0%, #ff5252 50%, #d52b1e 100%);
+        }
+        .anthro-label {
+          font-size: 0.75rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: .05em;
+          color: #6b7280;
+          margin-bottom: 6px;
+        }
+        .anthro-value {
+          font-size: 1.25rem;
+          font-weight: 800;
+          color: #1f2937;
+          display: flex;
+          align-items: baseline;
+          gap: 6px;
+        }
+        .anthro-unit {
+          font-size: 0.8rem;
+          color: #9ca3af;
+          font-weight: 600;
+        }
+        .anthro-footnote {
+          font-size: 0.72rem;
+          color: #6b7280;
+          margin-top: 4px;
+        }
+        .lung-section {
+          margin: 0.25rem 0 1.5rem;
+        }
+        .lung-title {
+          font-size: 1.1rem;
+          font-weight: 700;
+          color: #d52b1e;
+          margin-bottom: 0.75rem;
+        }
+        .lung-cards {
+          display: flex;
+          gap: 16px;
+          flex-wrap: wrap;
+        }
+        .lung-metric-card {
+          background: #f9fafb;
+          border-radius: 12px;
+          padding: 16px 18px;
+          min-width: 220px;
+          box-shadow: 0 2px 8px #0001;
+          border: 1px solid #e5e7eb;
+        }
+        .lung-metric-title { font-weight: 700; color: #d52b1e; margin-bottom: 4px; }
+        .lung-metric-value { font-size: 22px; font-weight: 800; }
+        .lung-metric-range { font-size: 13px; color: #666; margin-top: 2px; }
         .custom-meal-tooltip {
           background: white;
           border: 1px solid #e2e8f0;
@@ -206,22 +328,73 @@ export default function BaselineOverview({ token }) {
           font-weight: 600;
         }
       `}</style>
-      <h3>Health Baseline Overview</h3>
-      <div className="baseline-blocks">
-        {ALL_KEYS.map((key) => {
-          const stats = getStats(data, key);
-          if (!stats) return null;
-          return (
-            <div className="baseline-block" key={key}>
-              <div className="baseline-title">{LABELS[key]}</div>
-              <div className="baseline-median">Median: <b>{stats.median}</b></div>
-              <div className="baseline-minmax">
-                <span>Min: {stats.min}</span> | <span>Max: {stats.max}</span>
-              </div>
-            </div>
-          );
-        })}
+      <div className="baseline-header">
+        <h3 className="baseline-title">Health Baseline Overview</h3>
       </div>
+      {/* Anthropometrics */}
+      {anthro && (
+        <div className="anthro-section">
+          <div className="anthro-header">
+            <div className="anthro-title">Anthropometrics</div>
+            <div className="anthro-subtle">
+              {anthro.date ? new Date(String(anthro.date).replace(' ', 'T')).toLocaleString() : ''}
+              {anthro.filledBy ? ` • ${anthro.filledBy}` : ''}
+            </div>
+          </div>
+          <div className="anthro-grid">
+            {[
+              'height_cm',
+              'weight_kg',
+              'bmi',
+              'waist_circumference_cm',
+              'hip_circumference_cm',
+              'mid_arm_circumference_cm',
+              'grip_strength_left_kg',
+              'grip_strength_right_kg',
+            ].map((k) => {
+              const val = anthro?.[k];
+              const display = typeof val === 'number' ? (k === 'bmi' ? val.toFixed(1) : val.toFixed(1)) : '--';
+              const unit = ANTHRO_UNITS[k] || '';
+              let footnote = '';
+              if (k === 'bmi' && typeof val === 'number') {
+                if (val < 18.5) footnote = 'Underweight';
+                else if (val < 25) footnote = 'Normal';
+                else if (val < 30) footnote = 'Overweight';
+                else footnote = 'Obese';
+              }
+              return (
+                <div key={k} className="anthro-card">
+                  <div className="anthro-label">{ANTHRO_LABELS[k]}</div>
+                  <div className="anthro-value">
+                    <span>{display}</span>
+                    {unit && <span className="anthro-unit">{unit}</span>}
+                  </div>
+                  {footnote && <div className="anthro-footnote">{footnote}</div>}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Lung Function */}
+      {lungMetrics && (
+        <div className="lung-section">
+          <div className="lung-title">Lung Function</div>
+          <div className="lung-cards">
+            <div className="lung-metric-card">
+              <div className="lung-metric-title">FEV1</div>
+              <div className="lung-metric-value">{lungMetrics.fev1?.mean?.toFixed(2) ?? '--'} <span style={{ fontSize: 14, color: '#888' }}>L</span></div>
+              <div className="lung-metric-range">Min: {lungMetrics.fev1?.min?.toFixed(2) ?? '--'} | Max: {lungMetrics.fev1?.max?.toFixed(2) ?? '--'}</div>
+            </div>
+            <div className="lung-metric-card">
+              <div className="lung-metric-title">FEV1/FVC</div>
+              <div className="lung-metric-value">{lungMetrics.fev1_fvc?.mean?.toFixed(2) ?? '--'}</div>
+              <div className="lung-metric-range">Min: {lungMetrics.fev1_fvc?.min?.toFixed(2) ?? '--'} | Max: {lungMetrics.fev1_fvc?.max?.toFixed(2) ?? '--'}</div>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="meals-section" style={{marginTop: '2rem'}}>
         <h3>Food Data (Meals Timeline)</h3>
         {meals.length === 0 ? (
