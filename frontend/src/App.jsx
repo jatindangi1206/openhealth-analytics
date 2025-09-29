@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Sidebar from "./components/Sidebar";
 import ChartArea from "./components/ChartArea";
+import DayWiseData from "./components/DayWiseData";
 import BaselineOverview from "./components/BaselineOverview";
 import Disclaimer from "./components/Disclaimer";
 import Login from "./components/Login";
@@ -21,6 +22,7 @@ export default function App() {
   const [selected, setSelected] = useState(["systolic"]);
   const [token, setToken] = useState(null);
   const [showAdmin, setShowAdmin] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
 
   const claims = useMemo(() => {
     if (!token) return null;
@@ -83,7 +85,13 @@ export default function App() {
                 <>
                   <h1 className="swiss-title">Personal Health Data Report</h1>
                   <h2 className="swiss-subtitle">Trend Graphs</h2>
-                  <ChartArea selected={selected} token={token} />
+                  <ChartArea selected={selected} token={token} onDateClick={setSelectedDate} />
+                  <DayWiseData 
+                    selected={selected} 
+                    token={token} 
+                    selectedDate={selectedDate} 
+                    onClearSelection={() => setSelectedDate(null)}
+                  />
                   <BaselineOverview token={token} />
                   <Disclaimer />
                 </>

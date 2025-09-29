@@ -196,7 +196,7 @@ const ChartError = ({ message, onRetry }) => (
   </div>
 );
 
-export default function ChartArea({ selected, token }) {
+export default function ChartArea({ selected, token, onDateClick }) {
   const [data, setData] = useState([]);
   const [sleepStages, setSleepStages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -305,7 +305,22 @@ export default function ChartArea({ selected, token }) {
 
     return (
       <ResponsiveContainer width="100%" height={400}>
-        <ChartComponent data={data} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+        <ChartComponent 
+          data={data} 
+          margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+          onClick={(e) => {
+            if (e && e.activeLabel && e.activePayload && e.activePayload.length > 0) {
+              const activeData = e.activePayload[0].payload;
+              if (activeData && activeData.date && onDateClick) {
+                onDateClick({
+                  date: activeData.date,
+                  day: activeData.day,
+                  formattedDate: activeData.formattedDate
+                });
+              }
+            }
+          }}
+        >
           <defs>
             {Object.entries(GRADIENTS).map(([key, gradient]) => (
               <linearGradient key={key} id={`gradient-${key}`} x1="0" y1="0" x2="0" y2="1">

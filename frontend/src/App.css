@@ -424,6 +424,150 @@ body {
   outline-offset: 2px;
 }
 
+/* Day-wise Data Styles */
+.day-wise-container {
+  margin: 2rem 0;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--neutral-200);
+}
+
+.day-wise-charts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.chart-container {
+  background: var(--neutral-50);
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem;
+  border: 1px solid var(--neutral-200);
+}
+
+.chart-container .recharts-wrapper {
+  cursor: pointer;
+}
+
+.chart-container .recharts-wrapper .recharts-surface {
+  cursor: pointer;
+}
+
+.chart-title {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--neutral-800);
+  text-align: center;
+}
+
+.section-description {
+  margin: 0.5rem 0 0 0;
+  color: var(--neutral-600);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.loading, .error, .no-data {
+  padding: 2rem;
+  text-align: center;
+  color: var(--neutral-600);
+  font-size: 1rem;
+}
+
+.error {
+  color: var(--swiss-red);
+  background: var(--swiss-red-subtle);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--swiss-red-light);
+}
+
+.no-selection {
+  padding: 3rem 2rem;
+  text-align: center;
+  background: var(--neutral-50);
+  border-radius: var(--border-radius-lg);
+  border: 2px dashed var(--neutral-300);
+  margin: 1.5rem 0;
+}
+
+.no-selection-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+.no-selection-text {
+  color: var(--neutral-600);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.section-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.clear-selection-btn {
+  background: var(--swiss-red);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.clear-selection-btn:hover {
+  background: var(--swiss-red-dark);
+}
+
+.clear-selection-btn:active {
+  transform: translateY(1px);
+}
+
+.selected-date-highlight {
+  background: var(--swiss-red-subtle);
+  color: var(--swiss-red-dark);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  border: 1px solid var(--swiss-red-light);
+  display: inline-block;
+}
+
+/* Responsive design for day-wise charts */
+@media (min-width: 1200px) {
+  .day-wise-charts {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .day-wise-container {
+    margin: 1rem 0;
+    padding: 1.5rem;
+  }
+  
+  .chart-container {
+    padding: 1rem;
+  }
+  
+  .chart-title {
+    font-size: 1.1rem;
+  }
+}
+
 /* Print Styles */
 @media print {
   .swiss-header,
@@ -437,7 +581,8 @@ body {
   }
   
   .chart-area,
-  .baseline-block {
+  .baseline-block,
+  .day-wise-container {
     box-shadow: none;
     border: 1px solid #ccc;
   }
