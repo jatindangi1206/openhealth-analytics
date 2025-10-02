@@ -285,14 +285,22 @@ def process_meals_data(df: pd.DataFrame) -> pd.DataFrame:
     # Create a copy to avoid modifying the original
     processed = df.copy()
     
-    # Convert time to datetime; values are Unix seconds in supplied data
+    # Convert time to datetime; values are Unix milliseconds in supplied data
     if np.issubdtype(type(processed['time'].iloc[0]), np.integer) or np.issubdtype(processed['time'].dtype, np.number):
-        processed['date'] = pd.to_datetime(processed['time'], unit='s')
+        # Check if timestamps are in milliseconds (> year 2100 when treated as seconds)
+        sample_value = processed['time'].iloc[0]
+        if sample_value > 10000000000:  # Likely milliseconds (after year 2286 if seconds)
+            processed['date'] = pd.to_datetime(processed['time'], unit='ms')
+        else:
+            processed['date'] = pd.to_datetime(processed['time'], unit='s')
     else:
         processed['date'] = pd.to_datetime(processed['time'], errors='coerce')
     
-    # Select and rename relevant columns
-    result = processed[['date', 'dish']].copy()
+    # Select and rename relevant columns, include outlet if available
+    cols_to_keep = ['date', 'dish']
+    if 'outlet' in processed.columns:
+        cols_to_keep.append('outlet')
+    result = processed[cols_to_keep].copy()
     
     # Sort by date
     result.sort_values('date', inplace=True)

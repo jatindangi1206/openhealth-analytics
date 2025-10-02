@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { ScatterChart, Scatter, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { ScatterChart, Scatter, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell, Legend } from "recharts";
+import { getDateMapping } from '../utils/dateMapper';
 
 const ANTHRO_LABELS = {
   height_cm: "Height",
@@ -36,7 +37,9 @@ function getDayLabel(idx) {
 
 export default function BaselineOverview({ token }) {
   const [data, setData] = useState([]);
-  const [meals, setMeals] = useState([]); // array of { day, time, dish }
+  const [meals, setMeals] = useState([]); // array of { day, time, dish, outlet }
+  const [mealCountByDay, setMealCountByDay] = useState([]); // array of { day, count }
+  const [outletCounts, setOutletCounts] = useState([]); // array of { outlet, count }
   const [anthro, setAnthro] = useState(null);
   const [lungMetrics, setLungMetrics] = useState(null);
   useEffect(() => {
@@ -121,8 +124,14 @@ export default function BaselineOverview({ token }) {
         } else {
           setLungMetrics(null);
         }
-        // Prepare meal timeline data (robust to different keys)
+        // Prepare meal timeline data using shared date mapping
         const mealArr = [];
+        const dayCountMap = {}; // { dayLabel: count }
+        const outletMap = {}; // { outlet: count }
+        
+        // Get shared date mapping for consistency
+        const { dateToDayMap } = getDateMapping(raw);
+        
         if (raw.meals?.time_series && Array.isArray(raw.meals.time_series)) {
           const safeParseTime = (row) => {
             if (row.date) {
@@ -165,22 +174,44 @@ export default function BaselineOverview({ token }) {
           });
 
           const dayKeys = Object.keys(byDay).sort();
-          dayKeys.forEach((dayKey, idx) => {
+          dayKeys.forEach((dayKey) => {
+            // Use shared date mapping for consistent day labeling
+            const dayInfo = dateToDayMap[dayKey];
+            if (!dayInfo) return; // Skip if date not in mapping
+            
+            const dayLabel = dayInfo.dayLabel;
+            dayCountMap[dayLabel] = byDay[dayKey].length;
+            
             byDay[dayKey].forEach((meal) => {
               const parsed = safeParseTime(meal);
               if (!parsed) return; // skip if still invalid
               const hours = parsed.d.getHours() + parsed.d.getMinutes() / 60;
               const dish = meal.dish || meal.item || meal.name || meal.meal || meal.description || 'Meal';
-              meal._dayIdx = idx;
-              meal._dayLabel = getDayLabel(idx);
+              const outlet = meal.outlet || 'Unknown';
+              
+              meal._dayIdx = dayInfo.dayNumber - 1; // 0-based index
+              meal._dayLabel = dayLabel;
               meal._time = hours;
               meal._timeLabel = parsed.label;
               meal.dish = dish;
+              meal.outlet = outlet;
+              
+              // Count outlets
+              outletMap[outlet] = (outletMap[outlet] || 0) + 1;
             });
             mealArr.push(...byDay[dayKey]);
           });
         }
         setMeals(mealArr);
+        
+        // Convert to arrays for charts
+        const dayCountArr = Object.entries(dayCountMap).map(([day, count]) => ({ day, count }));
+        setMealCountByDay(dayCountArr);
+        
+        const outletArr = Object.entries(outletMap)
+          .map(([outlet, count]) => ({ outlet, count }))
+          .sort((a, b) => b.count - a.count); // Sort by count descending
+        setOutletCounts(outletArr);
       })
       .catch((e) => {
         console.error('Baseline fetch error', e);
@@ -404,67 +435,116 @@ export default function BaselineOverview({ token }) {
         </div>
       )}
       <div className="meals-section" style={{marginTop: '2rem'}}>
-        <h3>Food Data (Meals Timeline)</h3>
+        <h3 style={{fontSize: '1.4rem', fontWeight: 800, color: '#d52b1e', marginBottom: '1.5rem'}}>Food Data</h3>
         {meals.length === 0 ? (
           <div>No meal data available.</div>
         ) : (
-          <ResponsiveContainer width="100%" height={300}>
-            <ScatterChart margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
-              <XAxis
-                type="category"
-                dataKey="_dayLabel"
-                name="Day"
-                allowDuplicatedCategory={false}
-              />
-              <YAxis
-                type="number"
-                dataKey="_time"
-                name="Time"
-                domain={[0, 24]}
-                tickFormatter={(h) => `${Math.floor(h)}:${(h % 1 * 60).toString().padStart(2, '0')}`}
-                label={{ value: 'Time of Day', angle: -90, position: 'insideLeft' }}
-              />
-              <Tooltip
-                cursor={{ strokeDasharray: '3 3' }}
-                content={({ active, payload }) => {
-                  if (active && payload && payload.length) {
-                    const data = payload[0].payload;
-                    return (
-                      <div className="custom-meal-tooltip">
-                        <div className="meal-tooltip-header">{data._dayLabel}</div>
-                        <div className="meal-tooltip-content">
-                          <div className="meal-tooltip-item">
-                            <span className="meal-tooltip-label">Dish:</span>
-                            <span className="meal-tooltip-value">{data.dish}</span>
-                          </div>
-                          <div className="meal-tooltip-item">
-                            <span className="meal-tooltip-label">Time:</span>
-                            <span className="meal-tooltip-value">{data._timeLabel}</span>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  }
-                  return null;
-                }}
-              />
-              <Scatter 
-                name="Meals" 
-                data={meals} 
-                fill="#805ad5"
-                shape={(props) => (
-                  <circle 
-                    cx={props.cx} 
-                    cy={props.cy} 
-                    r={6}
-                    fill="#805ad5"
-                    stroke="#ffffff"
-                    strokeWidth={2}
+          <div style={{display: 'flex', flexDirection: 'column', gap: '2rem'}}>
+            {/* Meal Count by Day */}
+            <div>
+              <h4 style={{fontSize: '1.1rem', fontWeight: 700, color: '#d52b1e', marginBottom: '1rem'}}>
+                Daily Meal Count
+              </h4>
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart data={mealCountByDay} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+                  <XAxis 
+                    dataKey="day" 
+                    tick={{ fill: '#6b7280', fontSize: 12 }}
+                    angle={-45}
+                    textAnchor="end"
+                    height={80}
                   />
-                )}
-              />
-            </ScatterChart>
-          </ResponsiveContainer>
+                  <YAxis 
+                    tick={{ fill: '#6b7280', fontSize: 12 }}
+                    label={{ value: 'Number of Meals', angle: -90, position: 'insideLeft', style: { fill: '#6b7280' } }}
+                  />
+                  <Tooltip 
+                    contentStyle={{ 
+                      backgroundColor: 'white', 
+                      border: '1px solid #e5e7eb', 
+                      borderRadius: '8px',
+                      padding: '12px'
+                    }}
+                    labelStyle={{ fontWeight: 600, color: '#1f2937', marginBottom: '4px' }}
+                  />
+                  <Bar 
+                    dataKey="count" 
+                    fill="#805ad5" 
+                    radius={[8, 8, 0, 0]}
+                    name="Meals"
+                  />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+
+            {/* Outlet Distribution */}
+            <div>
+              <h4 style={{fontSize: '1.1rem', fontWeight: 700, color: '#d52b1e', marginBottom: '1rem'}}>
+                Top Outlets (Cumulative)
+              </h4>
+              <div style={{display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap'}}>
+                {/* Pie Chart */}
+                <ResponsiveContainer width="40%" height={300} minWidth={250}>
+                  <PieChart>
+                    <Pie
+                      data={outletCounts.slice(0, 8)} // Top 8 outlets
+                      dataKey="count"
+                      nameKey="outlet"
+                      cx="50%"
+                      cy="50%"
+                      outerRadius={100}
+                      label={({ outlet, percent }) => `${outlet}: ${(percent * 100).toFixed(0)}%`}
+                      labelLine={{ stroke: '#6b7280', strokeWidth: 1 }}
+                    >
+                      {outletCounts.slice(0, 8).map((entry, index) => {
+                        const colors = ['#805ad5', '#d52b1e', '#2563eb', '#059669', '#ea580c', '#dc2626', '#0891b2', '#7c3aed'];
+                        return <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />;
+                      })}
+                    </Pie>
+                    <Tooltip 
+                      contentStyle={{ 
+                        backgroundColor: 'white', 
+                        border: '1px solid #e5e7eb', 
+                        borderRadius: '8px',
+                        padding: '12px'
+                      }}
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+
+                {/* Bar Chart */}
+                <ResponsiveContainer width="55%" height={300} minWidth={300}>
+                  <BarChart data={outletCounts.slice(0, 10)} layout="vertical" margin={{ top: 5, right: 30, left: 120, bottom: 5 }}>
+                    <XAxis 
+                      type="number" 
+                      tick={{ fill: '#6b7280', fontSize: 12 }}
+                      label={{ value: 'Number of Meals', position: 'insideBottom', offset: -5, style: { fill: '#6b7280' } }}
+                    />
+                    <YAxis 
+                      type="category" 
+                      dataKey="outlet" 
+                      tick={{ fill: '#6b7280', fontSize: 11 }}
+                      width={110}
+                    />
+                    <Tooltip 
+                      contentStyle={{ 
+                        backgroundColor: 'white', 
+                        border: '1px solid #e5e7eb', 
+                        borderRadius: '8px',
+                        padding: '12px'
+                      }}
+                    />
+                    <Bar 
+                      dataKey="count" 
+                      fill="#805ad5" 
+                      radius={[0, 8, 8, 0]}
+                      name="Meals"
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </div>

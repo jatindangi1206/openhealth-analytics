@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar, RadialBarChart, RadialBar } from "recharts";
+import { getDateMapping } from '../utils/dateMapper';
 
 const COLORS = {
   systolic: "#d52b1e",
@@ -68,8 +69,12 @@ const ANTHRO_UNITS = {
 };
 
 function transformData(raw) {
+  // Use shared date mapping to ensure consistency across app
+  const { sortedDates, dateToDayMap } = getDateMapping(raw);
+  
   const dateMap = {};
   let sleepStageArr = [];
+  
   if (raw.blood_pressure?.time_series) {
     raw.blood_pressure.time_series.forEach((d) => {
       const date = d.date.slice(0, 10);
@@ -118,13 +123,20 @@ function transformData(raw) {
       dateMap[date].temperature = d.temperature;
     });
   }
-  const arr = Object.values(dateMap).sort((a, b) => a.date.localeCompare(b.date));
+  
+  // Map all dates to their day numbers using shared mapping
+  const arr = sortedDates.map(dateStr => {
+    const dayInfo = dateToDayMap[dateStr];
+    return {
+      date: dateStr,
+      day: dayInfo.dayLabel,
+      formattedDate: dayInfo.formattedDate,
+      ...(dateMap[dateStr] || {})
+    };
+  });
+  
   return {
-    arr: arr.map((item, idx) => ({
-      ...item,
-      day: `Day ${idx + 1}`,
-      formattedDate: new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-    })),
+    arr,
     sleepStageArr
   };
 }
@@ -312,8 +324,12 @@ export default function ChartArea({ selected, token, onDateClick }) {
             if (e && e.activeLabel && e.activePayload && e.activePayload.length > 0) {
               const activeData = e.activePayload[0].payload;
               if (activeData && activeData.date && onDateClick) {
-                // Pass the exact date from the clicked data point
-                onDateClick(activeData);
+                // Pass complete data including day label and formatted date
+                onDateClick({
+                  date: activeData.date,
+                  day: activeData.day,
+                  formattedDate: activeData.formattedDate
+                });
               }
             }
           }}

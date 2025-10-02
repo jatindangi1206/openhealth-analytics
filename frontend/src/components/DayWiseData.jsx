@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from "recharts";
+import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, ReferenceLine, ReferenceArea } from "recharts";
+import { getDateMapping } from '../utils/dateMapper';
 
 const COLORS = {
   systolic: "#d52b1e",
@@ -79,37 +80,22 @@ const CustomTooltip = ({ active, payload, label }) => {
 function transformToTimelineData(raw, selectedDayInfo = null) {
   if (!raw) return [];
   
-  // Get unique dates from blood_pressure data (this is the primary reference)
-  // This ensures consistency with ChartArea which also uses blood_pressure as primary
-  const allDates = new Set();
-  if (raw.blood_pressure?.time_series) {
-    raw.blood_pressure.time_series.forEach(item => {
-      allDates.add(item.date.slice(0, 10));
-    });
-  }
+  // Use shared date mapping to ensure consistency across app
+  const { sortedDates, dateToDayMap } = getDateMapping(raw);
   
-  // If no blood pressure data, fall back to other data sources
-  if (allDates.size === 0) {
-    Object.keys(raw).forEach(dataType => {
-      if (raw[dataType]?.time_series && dataType !== 'meals') {
-        raw[dataType].time_series.forEach(item => {
-          allDates.add(item.date.slice(0, 10));
-        });
-      }
-    });
-  }
-  
-  const sortedDates = Array.from(allDates).sort();
   if (sortedDates.length === 0) return [];
   
   const timelineData = [];
   
   // For each day, create all 24 hours
-  sortedDates.forEach((dateString, dayIndex) => {
+  sortedDates.forEach((dateString) => {
+    const dayInfo = dateToDayMap[dateString];
+    const dayIndex = dayInfo.dayNumber - 1; // Convert to 0-based index
+    
     for (let hour = 0; hour < 24; hour++) {
       const hourStr = hour.toString().padStart(2, '0');
       const timeLabel = `${hourStr}:00`;
-      const displayTime = `Day ${dayIndex + 1} ${timeLabel}`;
+      const displayTime = `${dayInfo.dayLabel} ${timeLabel}`;
       const isSelectedDay = selectedDayInfo && selectedDayInfo.date && 
                             selectedDayInfo.date.slice(0, 10) === dateString;
       
@@ -117,7 +103,7 @@ function transformToTimelineData(raw, selectedDayInfo = null) {
         time: displayTime,
         dayOffset: dayIndex,
         hour: hour,
-        dayLabel: `Day ${dayIndex + 1}`,
+        dayLabel: dayInfo.dayLabel,
         dateString: dateString,
         timeStr: timeLabel,
         isSelectedDay: isSelectedDay,
@@ -386,6 +372,29 @@ export default function DayWiseData({ selected, token, selectedDate, onClearSele
           <h3 className="chart-title">Hourly Health Data Timeline</h3>
           <ResponsiveContainer width={chartWidth} height={500}>
             <LineChart data={filteredData} margin={{ top: 20, right: 30, left: 20, bottom: 80 }}>
+              {/* Add yellow highlight for selected day */}
+              {selectedDate && (() => {
+                const selectedDateStr = selectedDate?.date ? selectedDate.date.slice(0, 10) : null;
+                if (!selectedDateStr) return null;
+                
+                // Find the first and last data points of the selected day
+                const firstPoint = filteredData.find(item => item.dateString === selectedDateStr && item.hour === 0);
+                const lastPoint = filteredData.find(item => item.dateString === selectedDateStr && item.hour === 23);
+                
+                if (firstPoint && lastPoint) {
+                  return (
+                    <ReferenceArea
+                      x1={firstPoint.time}
+                      x2={lastPoint.time}
+                      fill="#fef3c7"
+                      fillOpacity={0.3}
+                      strokeOpacity={0}
+                    />
+                  );
+                }
+                return null;
+              })()}
+              
               {/* Add reference lines for each day */}
               {totalDays > 0 && Array.from({ length: totalDays }, (_, i) => {
                 const firstPointOfDay = filteredData.find(item => item.dayOffset === i && item.hour === 0);
