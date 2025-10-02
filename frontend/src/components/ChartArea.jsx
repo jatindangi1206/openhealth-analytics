@@ -312,11 +312,8 @@ export default function ChartArea({ selected, token, onDateClick }) {
             if (e && e.activeLabel && e.activePayload && e.activePayload.length > 0) {
               const activeData = e.activePayload[0].payload;
               if (activeData && activeData.date && onDateClick) {
-                onDateClick({
-                  date: activeData.date,
-                  day: activeData.day,
-                  formattedDate: activeData.formattedDate
-                });
+                // Pass the exact date from the clicked data point
+                onDateClick(activeData);
               }
             }
           }}

@@ -546,6 +546,95 @@ body {
   display: inline-block;
 }
 
+.timeline-chart-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--border-radius-lg);
+  background: var(--neutral-50);
+  margin-top: 1rem;
+  max-height: 600px;
+  scroll-behavior: smooth;
+}
+
+.timeline-chart-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.timeline-chart-container::-webkit-scrollbar-track {
+  background: var(--neutral-100);
+  border-radius: var(--border-radius-sm);
+}
+
+.timeline-chart-container::-webkit-scrollbar-thumb {
+  background: var(--neutral-400);
+  border-radius: var(--border-radius-sm);
+}
+
+.timeline-chart-container::-webkit-scrollbar-thumb:hover {
+  background: var(--neutral-500);
+}
+
+.timeline-chart {
+  min-width: 100%;
+  padding: 1rem !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.timeline-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.days-indicator {
+  background: var(--neutral-100);
+  color: var(--neutral-700);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid var(--neutral-300);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.loading-indicator {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.timeline-instruction {
+  margin: 0.5rem 0 0 0;
+  color: var(--neutral-600);
+  font-size: 0.875rem;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Responsive design for timeline */
+@media (max-width: 768px) {
+  .timeline-controls {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+  }
+  
+  .days-indicator {
+    text-align: center;
+  }
+  
+  .timeline-chart-container {
+    margin-top: 0.5rem;
+  }
+}
+
 /* Responsive design for day-wise charts */
 @media (min-width: 1200px) {
   .day-wise-charts {

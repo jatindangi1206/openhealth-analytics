@@ -12,7 +12,6 @@ const PARAMETERS = [
   { key: "systolic", label: "Systolic Blood Pressure" },
   { key: "diastolic", label: "Diastolic Blood Pressure" },
   { key: "heartRate", label: "Heart Rate" },
-  { key: "sleep", label: "Sleep" },
   { key: "spo2", label: "Blood Oxygen Saturation (SpO₂)" },
   { key: "steps", label: "Steps" },
   { key: "temperature", label: "Temperature" },

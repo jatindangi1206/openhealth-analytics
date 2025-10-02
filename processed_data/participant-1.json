@@ -101,28 +101,12 @@
   },
   "blood_pressure": {
     "time_series": [
-
-  { "date": "2025-08-15 06:00:00", "systolic": 115, "diastolic": 74, "heartRate": 62 },
-  { "date": "2025-08-15 06:30:00", "systolic": 117, "diastolic": 75, "heartRate": 64 },
-  { "date": "2025-08-15 07:00:00", "systolic": 119, "diastolic": 76, "heartRate": 66 },
-  { "date": "2025-08-15 08:00:00", "systolic": 122, "diastolic": 77, "heartRate": 68 },
-  { "date": "2025-08-15 09:00:00", "systolic": 124, "diastolic": 79, "heartRate": 70 },
-  { "date": "2025-08-15 10:00:00", "systolic": 121, "diastolic": 78, "heartRate": 67 },
-  { "date": "2025-08-15 11:00:00", "systolic": 118, "diastolic": 76, "heartRate": 65 },
-  { "date": "2025-08-15 12:00:00", "systolic": 116, "diastolic": 74, "heartRate": 64 },
-  { "date": "2025-08-15 13:00:00", "systolic": 120, "diastolic": 77, "heartRate": 66 },
-  { "date": "2025-08-15 14:00:00", "systolic": 123, "diastolic": 80, "heartRate": 72 },
-  { "date": "2025-08-15 15:00:00", "systolic": 126, "diastolic": 81, "heartRate": 74 },
-  { "date": "2025-08-15 16:00:00", "systolic": 124, "diastolic": 79, "heartRate": 71 },
-  { "date": "2025-08-15 17:00:00", "systolic": 122, "diastolic": 78, "heartRate": 70 },
-  { "date": "2025-08-15 18:00:00", "systolic": 121, "diastolic": 77, "heartRate": 69 },
-  { "date": "2025-08-15 19:00:00", "systolic": 118, "diastolic": 76, "heartRate": 66 },
-  { "date": "2025-08-15 20:00:00", "systolic": 117, "diastolic": 75, "heartRate": 65 },
-  { "date": "2025-08-15 21:00:00", "systolic": 119, "diastolic": 76, "heartRate": 64 },
-  { "date": "2025-08-15 22:00:00", "systolic": 120, "diastolic": 77, "heartRate": 63 },
-  { "date": "2025-08-15 23:00:00", "systolic": 118, "diastolic": 74, "heartRate": 62 },
-  { "date": "2025-08-15 23:30:00", "systolic": 116, "diastolic": 73, "heartRate": 61 }
-,
+      {
+        "date": "2025-08-15 22:30:00",
+        "systolic": 121,
+        "diastolic": 78,
+        "heartRate": 64
+      },
       {
         "date": "2025-08-16 22:30:00",
         "systolic": 119,
