@@ -39,7 +39,18 @@ export default function Sidebar({ parameters, selected, setSelected }) {
             }}
             onClick={() => handleClick(param.key)}
           >
-            {param.label}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+              <span>{param.label}</span>
+              {param.unit && (
+                <span style={{ 
+                  fontSize: '0.7rem', 
+                  opacity: 0.7,
+                  fontWeight: 400
+                }}>
+                  ({param.unit})
+                </span>
+              )}
+            </div>
           </button>
         ))}
       </div>

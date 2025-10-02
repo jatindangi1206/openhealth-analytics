@@ -9,12 +9,12 @@ import Admin from "./components/Admin";
 import "./App.css";
 
 const PARAMETERS = [
-  { key: "systolic", label: "Systolic Blood Pressure" },
-  { key: "diastolic", label: "Diastolic Blood Pressure" },
-  { key: "heartRate", label: "Heart Rate" },
-  { key: "spo2", label: "Blood Oxygen Saturation (SpO₂)" },
-  { key: "steps", label: "Steps" },
-  { key: "temperature", label: "Temperature" },
+  { key: "systolic", label: "Systolic Blood Pressure", unit: "mmHg" },
+  { key: "diastolic", label: "Diastolic Blood Pressure", unit: "mmHg" },
+  { key: "heartRate", label: "Heart Rate", unit: "bpm" },
+  { key: "spo2", label: "Blood Oxygen Saturation (SpO₂)", unit: "%" },
+  { key: "steps", label: "Steps", unit: "count" },
+  { key: "temperature", label: "Temperature", unit: "°C" },
 ];
 
 export default function App() {
