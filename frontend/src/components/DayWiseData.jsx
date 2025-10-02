@@ -417,9 +417,40 @@ export default function DayWiseData({ selected, token, selectedDate, onClearSele
               
               <XAxis 
                 dataKey="time" 
-                tick={{ fontSize: 9, angle: -45, textAnchor: 'end' }}
+                tick={({ x, y, payload }) => {
+                  const parts = payload.value.split(' ');
+                  const day = parts.slice(0, 2).join(' '); // "Day 1"
+                  const time = parts[2]; // "00:00"
+                  
+                  return (
+                    <g transform={`translate(${x},${y})`}>
+                      <text 
+                        x={0} 
+                        y={0} 
+                        dy={16} 
+                        textAnchor="middle" 
+                        fill="#9ca3af" 
+                        fontSize="10"
+                        fontWeight="600"
+                      >
+                        {day}
+                      </text>
+                      <text 
+                        x={0} 
+                        y={0} 
+                        dy={30} 
+                        textAnchor="middle" 
+                        fill="#1f2937" 
+                        fontSize="11"
+                        fontWeight="500"
+                      >
+                        {time}
+                      </text>
+                    </g>
+                  );
+                }}
                 height={100}
-                interval={2} // Show every 3rd hour (0, 3, 6, 9, 12, 15, 18, 21)
+                interval={2}
               />
               <YAxis tick={{ fontSize: 12 }} />
               <Tooltip content={<CustomTooltip />} />

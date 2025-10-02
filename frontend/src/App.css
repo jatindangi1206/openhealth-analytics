@@ -58,7 +58,11 @@ body {
   font-size: 1.125rem;
   font-weight: 600;
   box-shadow: var(--shadow-lg);
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   overflow: hidden;
 }
 
@@ -100,6 +104,7 @@ body {
   flex: 1 1 auto;
   min-height: 0;
   gap: 0;
+  margin-top: 90px;
 }
 
 .sidebar {
@@ -112,6 +117,12 @@ body {
   flex-direction: column;
   align-items: flex-start;
   backdrop-filter: blur(10px);
+  position: fixed;
+  left: 0;
+  top: 90px;
+  bottom: 0;
+  overflow-y: auto;
+  z-index: 100;
 }
 
 .sidebar-inner {
@@ -190,6 +201,7 @@ body {
   flex: 1;
   padding: 3rem 4rem 2.5rem 4rem;
   min-width: 0;
+  margin-left: 320px;
   background: linear-gradient(135deg, var(--neutral-50) 0%, #ffffff 50%, var(--neutral-50) 100%);
 }
 
@@ -427,11 +439,36 @@ body {
 /* Day-wise Data Styles */
 .day-wise-container {
   margin: 2rem 0;
-  padding: 2rem;
-  background: #ffffff;
-  border-radius: var(--border-radius-xl);
-  box-shadow: var(--shadow-lg);
+  padding: 2.5rem;
+  background: linear-gradient(145deg, #ffffff 0%, var(--neutral-50) 100%);
+  border-radius: var(--border-radius-2xl);
+  box-shadow: 
+    var(--shadow-xl),
+    0 0 0 1px rgba(213, 43, 30, 0.05);
   border: 1px solid var(--neutral-200);
+  position: relative;
+  overflow: hidden;
+}
+
+.day-wise-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    var(--swiss-red) 0%, 
+    var(--swiss-red-light) 50%, 
+    var(--swiss-red) 100%
+  );
+  background-size: 200% 100%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .day-wise-charts {
@@ -457,11 +494,26 @@ body {
 }
 
 .chart-title {
-  margin: 0 0 1rem 0;
-  font-size: 1.25rem;
-  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  font-size: 1.4rem;
+  font-weight: 700;
   color: var(--neutral-800);
   text-align: center;
+  letter-spacing: -0.02em;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.chart-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--swiss-red), transparent);
+  border-radius: 2px;
 }
 
 .section-description {
@@ -549,37 +601,66 @@ body {
 .timeline-chart-container {
   overflow-x: auto;
   overflow-y: hidden;
-  border: 1px solid var(--neutral-200);
-  border-radius: var(--border-radius-lg);
-  background: var(--neutral-50);
-  margin-top: 1rem;
-  max-height: 600px;
+  border: 2px solid var(--neutral-200);
+  border-radius: var(--border-radius-xl);
+  background: linear-gradient(135deg, #ffffff 0%, var(--neutral-50) 100%);
+  margin-top: 1.5rem;
+  max-height: 650px;
   scroll-behavior: smooth;
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.02),
+    var(--shadow-md);
+  position: relative;
+}
+
+.timeline-chart-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(to right, rgba(255,255,255,0.95) 0%, transparent 5%),
+    linear-gradient(to left, rgba(255,255,255,0.95) 0%, transparent 5%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .timeline-chart-container::-webkit-scrollbar {
-  height: 8px;
+  height: 12px;
 }
 
 .timeline-chart-container::-webkit-scrollbar-track {
   background: var(--neutral-100);
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--border-radius-md);
+  margin: 4px;
+  border: 1px solid var(--neutral-200);
 }
 
 .timeline-chart-container::-webkit-scrollbar-thumb {
-  background: var(--neutral-400);
-  border-radius: var(--border-radius-sm);
+  background: linear-gradient(135deg, var(--swiss-red) 0%, var(--swiss-red-dark) 100%);
+  border-radius: var(--border-radius-md);
+  border: 2px solid var(--neutral-100);
+  transition: all 0.3s ease;
 }
 
 .timeline-chart-container::-webkit-scrollbar-thumb:hover {
-  background: var(--neutral-500);
+  background: linear-gradient(135deg, var(--swiss-red-light) 0%, var(--swiss-red) 100%);
+  transform: scaleY(1.1);
+}
+
+.timeline-chart-container::-webkit-scrollbar-thumb:active {
+  background: var(--swiss-red-dark);
 }
 
 .timeline-chart {
   min-width: 100%;
-  padding: 1rem !important;
+  padding: 2rem 1.5rem !important;
   background: transparent !important;
   border: none !important;
+  position: relative;
+  z-index: 2;
 }
 
 .timeline-controls {

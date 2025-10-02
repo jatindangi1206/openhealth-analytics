@@ -1,13 +1,14 @@
 import React from "react";
 
+// Use consistent colors across all components
 const BUTTON_COLORS = {
   systolic: "#d52b1e",
-  diastolic: "#e57373",
-  heartRate: "#b71c1c",
-  sleep: "#333",
-  spo2: "#1976d2",
-  steps: "#388e3c",
-  temperature: "#fbc02d",
+  diastolic: "#2563eb",
+  heartRate: "#dc2626",
+  sleep: "#7c3aed",
+  spo2: "#0891b2",
+  steps: "#ea580c",
+  temperature: "#059669",
 };
 
 export default function Sidebar({ parameters, selected, setSelected }) {

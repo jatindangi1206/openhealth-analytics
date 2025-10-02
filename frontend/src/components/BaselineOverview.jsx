@@ -328,18 +328,12 @@ export default function BaselineOverview({ token }) {
           font-weight: 600;
         }
       `}</style>
-      <div className="baseline-header">
-        <h3 className="baseline-title">Health Baseline Overview</h3>
-      </div>
+      
       {/* Anthropometrics */}
       {anthro && (
         <div className="anthro-section">
           <div className="anthro-header">
-            <div className="anthro-title">Anthropometrics</div>
-            <div className="anthro-subtle">
-              {anthro.date ? new Date(String(anthro.date).replace(' ', 'T')).toLocaleString() : ''}
-              {anthro.filledBy ? ` • ${anthro.filledBy}` : ''}
-            </div>
+            <div className="anthro-title">Anthropometrics Data</div>
           </div>
           <div className="anthro-grid">
             {[
@@ -355,13 +349,7 @@ export default function BaselineOverview({ token }) {
               const val = anthro?.[k];
               const display = typeof val === 'number' ? (k === 'bmi' ? val.toFixed(1) : val.toFixed(1)) : '--';
               const unit = ANTHRO_UNITS[k] || '';
-              let footnote = '';
-              if (k === 'bmi' && typeof val === 'number') {
-                if (val < 18.5) footnote = 'Underweight';
-                else if (val < 25) footnote = 'Normal';
-                else if (val < 30) footnote = 'Overweight';
-                else footnote = 'Obese';
-              }
+              
               return (
                 <div key={k} className="anthro-card">
                   <div className="anthro-label">{ANTHRO_LABELS[k]}</div>
@@ -369,7 +357,27 @@ export default function BaselineOverview({ token }) {
                     <span>{display}</span>
                     {unit && <span className="anthro-unit">{unit}</span>}
                   </div>
-                  {footnote && <div className="anthro-footnote">{footnote}</div>}
+                  {k === 'bmi' && typeof val === 'number' && (
+                    <div className="anthro-footnote">
+                      <a 
+                        href="https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        style={{
+                          color: '#d52b1e',
+                          textDecoration: 'none',
+                          fontSize: '0.72rem',
+                          fontWeight: 600,
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '4px'
+                        }}
+                      >
+                        What does this mean?
+                        <span style={{ fontSize: '0.65rem' }}>↗</span>
+                      </a>
+                    </div>
+                  )}
                 </div>
               );
             })}
